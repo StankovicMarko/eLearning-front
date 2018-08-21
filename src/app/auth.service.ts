@@ -14,7 +14,7 @@ export class AuthService {
   userAuthentication(userName, password) {
       var data = {"username" : userName,
                   "password" : password};
-      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth':'True'});
       return this.http.post(this.rootUrl, data, { headers: reqHeader });
     }
 }

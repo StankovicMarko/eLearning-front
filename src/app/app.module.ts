@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule} from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 
 import { AuthGuard } from './guard/auth.guard';
+import { AuthInterceptor } from './guard/auth.interceptor';
 
 
 @NgModule({
@@ -47,7 +48,12 @@ import { AuthGuard } from './guard/auth.guard';
     LoginComponent
 
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
