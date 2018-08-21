@@ -3,21 +3,43 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LoginComponent } from './login/login.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AuthGuard } from './guard/auth.guard';
+
 
 const routes: Routes =[
+  // {
+  //   path: '',
+  //   redirectTo: 'dashboard',
+  //   pathMatch: 'full',
+  // }, {
+  //   path: '',
+  //   component: AdminLayoutComponent,
+  //   children: [
+  //       {
+  //     path: '',
+  //     loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+  // }
+  { path : '',
+  redirectTo:'login',
+  pathMatch : 'full'},
+  {
+    path: 'login',
+    component: LoginComponent
+    // children: [{ path: '', component: SignInComponent }]
+  },
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
         {
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }]}
+
+// ]}
     // { path: 'dashboard',      component: DashboardComponent },
     // { path: 'user-profile',   component: UserProfileComponent },
     // { path: 'table-list',     component: TableListComponent },

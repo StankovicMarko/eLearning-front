@@ -123,4 +123,10 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
+
+
+    Logout(){
+      localStorage.removeItem("token");
+      this.router.navigate(['/login']);
+    }
 }
