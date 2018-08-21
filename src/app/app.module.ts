@@ -25,6 +25,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 
+import { AuthGuard } from './guard/auth.guard';
+
 
 @NgModule({
   imports: [
@@ -45,7 +47,7 @@ import { AuthService } from './auth.service';
     LoginComponent
 
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

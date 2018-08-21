@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   OnSubmit(userName,password){
     this.authService.userAuthentication(userName,password).subscribe((data : any)=>{
-     localStorage.setItem('token',data);
+     localStorage.setItem('token',data.token);
      this.router.navigate(['/dashboard']);
    },
    (err : HttpErrorResponse)=>{
