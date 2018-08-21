@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../auth.service';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -7,15 +8,25 @@ declare interface RouteInfo {
     icon: string;
     class: string;
 }
-export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+
+export let ROUTES: RouteInfo[];
+
+export const ADMIN_ROUTES: RouteInfo[] = [
+    {path: '/users', title: 'Users', icon: '', class: ''},
+    {path: '/subjects', title: 'Subjects', icon: '', class: ''},
+    {path: '/subject-activities', title: 'Subject Activities', icon: '', class: ''},
+    {path: '/payments', title: 'Payments', icon: '', class: ''}
+];
+
+export const NASTAVNIK_ROUTES: RouteInfo[] = [
+    {path: '/users', title: 'Users', icon: '', class: ''},
+    {path: '/subjects', title: 'Subjects', icon: '', class: ''},
+    {path: '/subject-activities', title: 'Subject Activities', icon: '', class: ''},
+];
+
+export const UCENIK_ROUTES: RouteInfo[] = [
+    {path: '/subjects', title: 'Subjects', icon: '', class: ''},
+    {path: '/documents', title: 'Documents', icon: '', class: ''},
 ];
 
 @Component({
@@ -25,11 +36,23 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+    private userType;
 
-  constructor() { }
+    constructor(private authService: AuthService) {
+    }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+      this.userType = this.authService.getCurrentUserType();
+      if (this.userType === 'Administrator') {
+          this.menuItems = ADMIN_ROUTES.filter(menuItem => menuItem);
+          ROUTES = ADMIN_ROUTES;
+      } else if (this.userType === 'Nastavnik') {
+          this.menuItems = NASTAVNIK_ROUTES.filter(menuItem => menuItem);
+          ROUTES = NASTAVNIK_ROUTES;
+      } else if (this.userType === 'Ucenik') {
+          this.menuItems = UCENIK_ROUTES.filter(menuItem => menuItem);
+          ROUTES = UCENIK_ROUTES;
+      }
   }
   isMobileMenu() {
       if ($(window).width() > 991) {
