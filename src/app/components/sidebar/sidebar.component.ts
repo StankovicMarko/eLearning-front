@@ -12,21 +12,22 @@ declare interface RouteInfo {
 export let ROUTES: RouteInfo[];
 
 export const ADMIN_ROUTES: RouteInfo[] = [
-    {path: '/users', title: 'Users', icon: '', class: ''},
-    {path: '/subjects', title: 'Subjects', icon: '', class: ''},
-    {path: '/subject-activities', title: 'Subject Activities', icon: '', class: ''},
-    {path: '/payments', title: 'Payments', icon: '', class: ''}
+
+    {path: '/users', title: 'Users', icon: 'perm_identity', class: ''},
+    {path: '/subjects', title: 'Subjects', icon: 'subject', class: ''},
+    {path: '/subject-activities', title: 'Subject Activities', icon: 'assignment', class: ''},
+    {path: '/payments', title: 'Payments', icon: 'payment', class: ''}
 ];
 
 export const NASTAVNIK_ROUTES: RouteInfo[] = [
-    {path: '/users', title: 'Users', icon: '', class: ''},
-    {path: '/subjects', title: 'Subjects', icon: '', class: ''},
-    {path: '/subject-activities', title: 'Subject Activities', icon: '', class: ''},
+    {path: '/users', title: 'Users', icon: 'perm_identity', class: ''},
+    {path: '/subjects', title: 'Subjects', icon: 'subject', class: ''},
+    {path: '/subject-activities', title: 'Subject Activities', icon: 'assignment', class: ''}
 ];
 
 export const UCENIK_ROUTES: RouteInfo[] = [
-    {path: '/subjects', title: 'Subjects', icon: '', class: ''},
-    {path: '/documents', title: 'Documents', icon: '', class: ''},
+    {path: '/subjects', title: 'Subjects', icon: 'subject', class: ''},
+    {path: '/documents', title: 'Documents', icon: 'picture_in_picture', class: ''},
 ];
 
 @Component({
