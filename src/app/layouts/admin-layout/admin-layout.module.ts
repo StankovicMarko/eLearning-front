@@ -11,6 +11,9 @@ import { IconsComponent } from '../../icons/icons.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
+import { UsersComponent } from '../../components/users/users.component';
+
+
 import {
   MatButtonModule,
   MatInputModule,
@@ -35,6 +38,7 @@ import {
     IconsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    UsersComponent
   ]
 })
 

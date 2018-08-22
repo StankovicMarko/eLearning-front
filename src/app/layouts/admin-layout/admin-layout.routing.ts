@@ -55,7 +55,7 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    //{ path: 'users',      component: UsersComponent },
+    { path: 'users',      component: UsersComponent },
 
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
