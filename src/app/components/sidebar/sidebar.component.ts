@@ -20,7 +20,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
 ];
 
 export const NASTAVNIK_ROUTES: RouteInfo[] = [
-    {path: '/users', title: 'Users', icon: 'perm_identity', class: ''},
+  //  {path: '/users', title: 'Users', icon: 'perm_identity', class: ''},
     {path: '/subjects', title: 'Subjects', icon: 'subject', class: ''},
     {path: '/subject-activities', title: 'Subject Activities', icon: 'assignment', class: ''}
 ];
@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
       }
   }
   isMobileMenu() {
-      if ($(window).width() > 991) {
+      if ($(window).width() > 600) {
           return false;
       }
       return true;

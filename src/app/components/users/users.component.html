@@ -1,11 +1,11 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div class="row">
+      <div class="row" *ngIf="admins">
           <div class="col-md-12">
               <div class="card card-plain">
                   <div class="card-header card-header-danger">
-                      <h4 class="card-title mt-0"> Table on Plain Background</h4>
-                      <p class="card-category"> Here is a subtitle for this table</p>
+                      <h4 class="card-title mt-0"> List of Admins</h4>
+                      <p class="card-category"> These are admins that work here</p>
                   </div>
                   <div class="card-body">
                       <div class="table-responsive">
@@ -18,118 +18,47 @@
                                       Name
                                   </th>
                                   <th>
-                                      Country
+                                      Surname
                                   </th>
                                   <th>
-                                      City
+                                      Address
                                   </th>
                                   <th>
-                                      Salary
+                                      Phone
+                                  </th>
+                                  <th>
+                                      Birth Date
+                                  </th>
+                                  <th>
+                                      Pol
                                   </th>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <td>
-                                          1
-                                      </td>
-                                      <td>
-                                          Dakota Rice
-                                      </td>
-                                      <td>
-                                          Niger
-                                      </td>
-                                      <td>
-                                          Oud-Turnhout
-                                      </td>
-                                      <td>
-                                          $36,738
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          2
-                                      </td>
-                                      <td>
-                                          Minerva Hooper
-                                      </td>
-                                      <td>
-                                          Curaçao
-                                      </td>
-                                      <td>
-                                          Sinaai-Waas
-                                      </td>
-                                      <td>
-                                          $23,789
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          3
-                                      </td>
-                                      <td>
-                                          Sage Rodriguez
-                                      </td>
-                                      <td>
-                                          Netherlands
-                                      </td>
-                                      <td>
-                                          Baileux
-                                      </td>
-                                      <td>
-                                          $56,142
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          4
-                                      </td>
-                                      <td>
-                                          Philip Chaney
-                                      </td>
-                                      <td>
-                                          Korea, South
-                                      </td>
-                                      <td>
-                                          Overland Park
-                                      </td>
-                                      <td>
-                                          $38,735
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          5
-                                      </td>
-                                      <td>
-                                          Doris Greene
-                                      </td>
-                                      <td>
-                                          Malawi
-                                      </td>
-                                      <td>
-                                          Feldkirchen in Kärnten
-                                      </td>
-                                      <td>
-                                          $63,542
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                          6
-                                      </td>
-                                      <td>
-                                          Mason Porter
-                                      </td>
-                                      <td>
-                                          Chile
-                                      </td>
-                                      <td>
-                                          Gloucester
-                                      </td>
-                                      <td>
-                                          $78,615
-                                      </td>
-                                  </tr>
+                                <tr *ngFor="let admin of admins">
+                                  <td>
+                                      {{admin.id}}
+                                  </td>
+                                  <td>
+                                      {{admin.ime}}
+                                  </td>
+                                  <td>
+                                      {{admin.prezime}}
+                                  </td>
+                                  <td>
+                                      {{admin.adresa}}
+                                  </td>
+                                  <td>
+                                      {{admin.telefon}}
+                                  </td>
+                                  <td>
+                                      {{admin.datumRodjenja}}
+                                  </td>
+                                  <td>
+                                      {{admin.pol}}
+                                  </td>
+                                </tr>
+
+
                               </tbody>
                           </table>
                       </div>
@@ -137,5 +66,147 @@
               </div>
           </div>
       </div>
+
+
+      <div class="row" *ngIf="teachers">
+          <div class="col-md-12">
+              <div class="card card-plain">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title mt-0"> List of Teachers</h4>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table table-hover">
+                              <thead class="">
+                                  <th>
+                                      ID
+                                  </th>
+                                  <th>
+                                      Name
+                                  </th>
+                                  <th>
+                                      Surname
+                                  </th>
+                                  <th>
+                                      Address
+                                  </th>
+                                  <th>
+                                      Phone
+                                  </th>
+                                  <th>
+                                      Birth Date
+                                  </th>
+                                  <th>
+                                      Pol
+                                  </th>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let t of teachers">
+                                  <td>
+                                      {{t.id}}
+                                  </td>
+                                  <td>
+                                      {{t.ime}}
+                                  </td>
+                                  <td>
+                                      {{t.prezime}}
+                                  </td>
+                                  <td>
+                                      {{t.adresa}}
+                                  </td>
+                                  <td>
+                                      {{t.telefon}}
+                                  </td>
+                                  <td>
+                                      {{t.datumRodjenja}}
+                                  </td>
+                                  <td>
+                                      {{t.pol}}
+                                  </td>
+                                </tr>
+
+
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
+      <div class="row" *ngIf="students">
+          <div class="col-md-12">
+              <div class="card card-plain">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title mt-0"> List of Students</h4>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table table-hover">
+                              <thead class="">
+                                  <th>
+                                      ID
+                                  </th>
+                                  <th>
+                                      Name
+                                  </th>
+                                  <th>
+                                      Surname
+                                  </th>
+                                  <th>
+                                      Occupation
+                                  </th>
+                                  <th>
+                                      Address
+                                  </th>
+                                  <th>
+                                      Phone
+                                  </th>
+                                  <th>
+                                      Birth Date
+                                  </th>
+                                  <th>
+                                      Pol
+                                  </th>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let s of students">
+                                  <td>
+                                      {{s.indeks}}
+                                  </td>
+                                  <td>
+                                      {{s.ime}}
+                                  </td>
+                                  <td>
+                                      {{s.prezime}}
+                                  </td>
+                                  <td>
+                                      {{s.radniStatus}}
+                                  </td>
+                                  <td>
+                                      {{s.adresa}}
+                                  </td>
+                                  <td>
+                                      {{s.telefon}}
+                                  </td>
+                                  <td>
+                                      {{s.datumRodjenja}}
+                                  </td>
+                                  <td>
+                                      {{s.pol}}
+                                  </td>
+                                </tr>
+
+
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
   </div>
 </div>

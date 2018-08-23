@@ -27,6 +27,9 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthInterceptor } from './guard/auth.interceptor';
 
+import { UsersService } from './services/users.service';
+
+
 
 @NgModule({
   imports: [
@@ -47,7 +50,9 @@ import { AuthInterceptor } from './guard/auth.interceptor';
     LoginComponent
 
   ],
-  providers: [AuthService, AuthGuard,
+  providers: [AuthService, 
+    AuthGuard,
+    UsersService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
