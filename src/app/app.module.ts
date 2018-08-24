@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { HttpModule} from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -36,6 +36,7 @@ import { UsersService } from './services/users.service';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+     ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     RouterModule,
@@ -50,7 +51,7 @@ import { UsersService } from './services/users.service';
     LoginComponent
 
   ],
-  providers: [AuthService, 
+  providers: [AuthService,
     AuthGuard,
     UsersService,
     {

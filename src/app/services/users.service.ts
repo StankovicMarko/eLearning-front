@@ -29,4 +29,17 @@ export class UsersService {
     return this.http.get(this.rootUrl+'/users/ucenik', {headers : headers});
   }
 
+
+  updateUser(user){
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth':'False'});
+
+    return this.http.put(this.rootUrl+'/users/admin/'+user.id, user, {headers : headers});
+  }
+
+  deleteUser(id){
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth':'False'});
+
+    return this.http.delete(this.rootUrl+'/users/admin/'+id, {headers : headers});
+  }
+
 }

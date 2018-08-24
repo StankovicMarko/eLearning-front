@@ -1,212 +1,326 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div class="row" *ngIf="admins">
-          <div class="col-md-12">
-              <div class="card card-plain">
+
+
+
+    <!-- Modal -->
+    <div *ngIf="selectedUser" class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+
+          <div class="modal-content main-content">
+            <div class="container-fluid">
+              <div class="row">
+
+                <div class="card">
                   <div class="card-header card-header-danger">
-                      <h4 class="card-title mt-0"> List of Admins</h4>
-                      <p class="card-category"> These are admins that work here</p>
+                    <h4 class="card-title">Edit Profile</h4>
+                    <p class="card-category">Complete your profile</p>
                   </div>
                   <div class="card-body">
-                      <div class="table-responsive">
-                          <table class="table table-hover">
-                              <thead class="">
-                                  <th>
-                                      ID
-                                  </th>
-                                  <th>
-                                      Name
-                                  </th>
-                                  <th>
-                                      Surname
-                                  </th>
-                                  <th>
-                                      Address
-                                  </th>
-                                  <th>
-                                      Phone
-                                  </th>
-                                  <th>
-                                      Birth Date
-                                  </th>
-                                  <th>
-                                      Pol
-                                  </th>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let admin of admins">
-                                  <td>
-                                      {{admin.id}}
-                                  </td>
-                                  <td>
-                                      {{admin.ime}}
-                                  </td>
-                                  <td>
-                                      {{admin.prezime}}
-                                  </td>
-                                  <td>
-                                      {{admin.adresa}}
-                                  </td>
-                                  <td>
-                                      {{admin.telefon}}
-                                  </td>
-                                  <td>
-                                      {{admin.datumRodjenja}}
-                                  </td>
-                                  <td>
-                                      {{admin.pol}}
-                                  </td>
-                                </tr>
-
-
-                              </tbody>
-                          </table>
+                    <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+                      <div class="row">
+                        <div class="col-md-1">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="ID" formControlName="id">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Username" type="text" formControlName="username">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Name" formControlName="ime">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Surname" formControlName="prezime" >
+                          </mat-form-field>
+                        </div>
                       </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Address" type="text" formControlName="adresa" >
+                          </mat-form-field>
+                        </div>
 
-
-      <div class="row" *ngIf="teachers">
-          <div class="col-md-12">
-              <div class="card card-plain">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title mt-0"> List of Teachers</h4>
-                  </div>
-                  <div class="card-body">
-                      <div class="table-responsive">
-                          <table class="table table-hover">
-                              <thead class="">
-                                  <th>
-                                      ID
-                                  </th>
-                                  <th>
-                                      Name
-                                  </th>
-                                  <th>
-                                      Surname
-                                  </th>
-                                  <th>
-                                      Address
-                                  </th>
-                                  <th>
-                                      Phone
-                                  </th>
-                                  <th>
-                                      Birth Date
-                                  </th>
-                                  <th>
-                                      Pol
-                                  </th>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let t of teachers">
-                                  <td>
-                                      {{t.id}}
-                                  </td>
-                                  <td>
-                                      {{t.ime}}
-                                  </td>
-                                  <td>
-                                      {{t.prezime}}
-                                  </td>
-                                  <td>
-                                      {{t.adresa}}
-                                  </td>
-                                  <td>
-                                      {{t.telefon}}
-                                  </td>
-                                  <td>
-                                      {{t.datumRodjenja}}
-                                  </td>
-                                  <td>
-                                      {{t.pol}}
-                                  </td>
-                                </tr>
-
-
-                              </tbody>
-                          </table>
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Residence ID" type="text" formControlName="mestoId">
+                          </mat-form-field>
+                        </div>
                       </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-
-
-      <div class="row" *ngIf="students">
-          <div class="col-md-12">
-              <div class="card card-plain">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title mt-0"> List of Students</h4>
-                  </div>
-                  <div class="card-body">
-                      <div class="table-responsive">
-                          <table class="table table-hover">
-                              <thead class="">
-                                  <th>
-                                      ID
-                                  </th>
-                                  <th>
-                                      Name
-                                  </th>
-                                  <th>
-                                      Surname
-                                  </th>
-                                  <th>
-                                      Occupation
-                                  </th>
-                                  <th>
-                                      Address
-                                  </th>
-                                  <th>
-                                      Phone
-                                  </th>
-                                  <th>
-                                      Birth Date
-                                  </th>
-                                  <th>
-                                      Pol
-                                  </th>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let s of students">
-                                  <td>
-                                      {{s.indeks}}
-                                  </td>
-                                  <td>
-                                      {{s.ime}}
-                                  </td>
-                                  <td>
-                                      {{s.prezime}}
-                                  </td>
-                                  <td>
-                                      {{s.radniStatus}}
-                                  </td>
-                                  <td>
-                                      {{s.adresa}}
-                                  </td>
-                                  <td>
-                                      {{s.telefon}}
-                                  </td>
-                                  <td>
-                                      {{s.datumRodjenja}}
-                                  </td>
-                                  <td>
-                                      {{s.pol}}
-                                  </td>
-                                </tr>
-
-
-                              </tbody>
-                          </table>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Phone" type="text" formControlName="telefon">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Date of Birth" type="text" formControlName="datumRodjenja">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Gender" type="text" formControlName="pol">
+                          </mat-form-field>
+                        </div>
                       </div>
+
+
+                      <button mat-raised-button type="submit" class="btn btn-danger pull-left">Update Profile</button>
+
+                      <button mat-raised-button type="button" class="btn btn-warning pull-right" aria-label="Delete" (click)='deleteUser()'>Delete profile</button>
+
+
+
+                      <div class="clearfix"></div>
+
+                      <button mat-raised-button type="button"
+                      class="btn btn-danger pull-right close" aria-label="Close"
+                      data-dismiss="modal" id='closeModal'>Close</button>
+
+                    </form>
                   </div>
+                </div>
+
+
               </div>
+            </div>
           </div>
+
+
       </div>
+    </div>
+
+
+    <div class="row" *ngIf="admins">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0 pull-left"> List of Admins</h4>
+            <button mat-raised-button type="button" class="btn btn-info pull-right">
+                        Add New
+                      </button>
+
+
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Surname
+                  </th>
+                  <th>
+                    Address
+                  </th>
+                  <th>
+                    Phone
+                  </th>
+                  <th>
+                    Birth Date
+                  </th>
+                  <th>
+                    Pol
+                  </th>
+                  <th>
+                    Details
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let a of admins; let i=index;" (click)="Selected(a);">
+                    <td>
+                      {{a.id}}
+                    </td>
+                    <td>
+                      {{a.ime}}
+                    </td>
+                    <td>
+                      {{a.prezime}}
+                    </td>
+                    <td>
+                      {{a.adresa}}
+                    </td>
+                    <td>
+                      {{a.telefon}}
+                    </td>
+                    <td>
+                      {{a.datumRodjenja}}
+                    </td>
+                    <td>
+                      {{a.pol}}
+                    </td>
+
+                    <td>
+
+                      <button mat-raised-button type="button" class="btn btn-danger"
+                      data-toggle="modal" data-target="#userModal">
+                                  See More
+                                </button>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row" *ngIf="teachers">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0"> List of Teachers</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Surname
+                  </th>
+                  <th>
+                    Address
+                  </th>
+                  <th>
+                    Phone
+                  </th>
+                  <th>
+                    Birth Date
+                  </th>
+                  <th>
+                    Pol
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let t of teachers">
+                    <td>
+                      {{t.id}}
+                    </td>
+                    <td>
+                      {{t.ime}}
+                    </td>
+                    <td>
+                      {{t.prezime}}
+                    </td>
+                    <td>
+                      {{t.adresa}}
+                    </td>
+                    <td>
+                      {{t.telefon}}
+                    </td>
+                    <td>
+                      {{t.datumRodjenja}}
+                    </td>
+                    <td>
+                      {{t.pol}}
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row" *ngIf="students">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0"> List of Students</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Surname
+                  </th>
+                  <th>
+                    Occupation
+                  </th>
+                  <th>
+                    Address
+                  </th>
+                  <th>
+                    Phone
+                  </th>
+                  <th>
+                    Birth Date
+                  </th>
+                  <th>
+                    Pol
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of students">
+                    <td>
+                      {{s.indeks}}
+                    </td>
+                    <td>
+                      {{s.ime}}
+                    </td>
+                    <td>
+                      {{s.prezime}}
+                    </td>
+                    <td>
+                      {{s.radniStatus}}
+                    </td>
+                    <td>
+                      {{s.adresa}}
+                    </td>
+                    <td>
+                      {{s.telefon}}
+                    </td>
+                    <td>
+                      {{s.datumRodjenja}}
+                    </td>
+                    <td>
+                      {{s.pol}}
+                    </td>
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
