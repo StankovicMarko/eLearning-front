@@ -26,6 +26,8 @@ import { AuthService } from './auth.service';
 
 import { AuthGuard } from './guard/auth.guard';
 import { AuthInterceptor } from './guard/auth.interceptor';
+import { SubjectsComponent } from './components/subjects/subjects.component';
+import {SubjectsService} from './subjects.service';
 
 import { UsersService } from './services/users.service';
 
@@ -48,12 +50,14 @@ import { UsersService } from './services/users.service';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    SubjectsComponent
 
   ],
   providers: [AuthService,
     AuthGuard,
     UsersService,
+    SubjectsService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
