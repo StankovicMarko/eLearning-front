@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { UsersService } from '../../services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Admin } from '../../model/admin';
 
 
 
@@ -84,9 +85,10 @@ export class UsersComponent implements OnInit {
 
   onSubmit() {
 
-    let user = Object.assign({},this.updateUserForm.value);
+    let user = new Admin();
+    Object.assign(user,this.updateUserForm.value);
     user.password = this.selectedUser.password;
-    user.id = this.selectedUser;
+    user.id = this.selectedUser.id;
     this.usersService.updateUser(user).subscribe((data: any) => {
       this.getAdmins();
     },
@@ -98,7 +100,8 @@ export class UsersComponent implements OnInit {
 
   addUser() {
 
-    let user = Object.assign({},this.addUserForm.value);
+    let user = new Admin();
+    Object.assign(user,this.addUserForm.value);
     this.usersService.addUser(user).subscribe((data: any) => {
       this.getAdmins();
 
@@ -110,7 +113,9 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser() {
-    this.usersService.deleteUser(this.selectedUser).subscribe((data: any) => {
+    let user = new Admin();
+    Object.assign(user,this.selectedUser);
+    this.usersService.deleteUser(user).subscribe((data: any) => {
       this.getAdmins();
     },
       (err: any) => {
