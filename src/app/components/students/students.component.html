@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
 
-    <!-- Modal -->
+
     <div class="modal fade" id="addModal" tabindex="-1"
     role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -68,6 +68,32 @@
                             <input matInput placeholder="Gender" type="text" formControlName="pol">
                           </mat-form-field>
                         </div>
+
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Indeks" type="text" formControlName="indeks">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Account num" type="text" formControlName="brojRacuna">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Employed" type="text" formControlName="radniStatus">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Occupation" type="text" formControlName="zanimanje">
+                          </mat-form-field>
+                        </div>
                       </div>
 
 
@@ -98,7 +124,8 @@
 
 
     <!-- Modal -->
-    <div *ngIf="selectedUser" class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div *ngIf="selectedUser" class="modal fade" id="studentModal" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
 
           <div class="modal-content main-content">
@@ -163,6 +190,31 @@
                             <input matInput placeholder="Gender" type="text" formControlName="pol">
                           </mat-form-field>
                         </div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Index" type="text" formControlName="indeks">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Account num" type="text" formControlName="brojRacuna">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Employed" type="text" formControlName="radniStatus">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Occupation" type="text" formControlName="zanimanje">
+                          </mat-form-field>
+                        </div>
                       </div>
 
 
@@ -192,11 +244,11 @@
     </div>
 
 
-    <div class="row" *ngIf="admins">
+    <div class="row" *ngIf="students">
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-danger">
-            <h4 class="card-title mt-0 pull-left"> List of Admins</h4>
+            <h4 class="card-title mt-0 pull-left"> List of Professors</h4>
             <button mat-raised-button type="button" class="btn btn-info pull-right"
             data-toggle="modal" data-target="#addModal">
                         Add New
@@ -209,7 +261,7 @@
               <table class="table table-hover">
                 <thead class="">
                   <th>
-                    ID
+                    Index
                   </th>
                   <th>
                     Name
@@ -230,41 +282,50 @@
                     Pol
                   </th>
                   <th>
+                    Employed?
+                  </th>
+                  <th>
                     Details
                   </th>
+
                 </thead>
                 <tbody>
-                  <tr *ngFor="let a of admins; let i=index;" (click)="Selected(a);">
+                  <tr *ngFor="let s of students; let i=index;" (click)="Selected(s);">
                     <td>
-                      {{a.id}}
+                      {{s.indeks}}
                     </td>
                     <td>
-                      {{a.ime}}
+                      {{s.ime}}
                     </td>
                     <td>
-                      {{a.prezime}}
+                      {{s.prezime}}
                     </td>
                     <td>
-                      {{a.adresa}}
+                      {{s.adresa}}
                     </td>
                     <td>
-                      {{a.telefon}}
+                      {{s.telefon}}
                     </td>
                     <td>
-                      {{a.datumRodjenja}}
+                      {{s.datumRodjenja}}
                     </td>
                     <td>
-                      {{a.pol}}
+                      {{s.pol}}
+                    </td>
+                    <td>
+                      {{s.radniStatus}}
                     </td>
 
                     <td>
 
                       <button mat-raised-button type="button" class="btn btn-danger"
-                      data-toggle="modal" data-target="#userModal">
+                      data-toggle="modal" data-target="#studentModal">
                                   See More
                                 </button>
                     </td>
                   </tr>
+
+
                 </tbody>
               </table>
             </div>
@@ -272,8 +333,6 @@
         </div>
       </div>
     </div>
-
-
 
 
 
