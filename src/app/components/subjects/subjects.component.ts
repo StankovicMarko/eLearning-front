@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SubjectsService} from '../../services/subjects.service';
 import {Subject} from '../../model/subject';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Student} from '../../model/student';
 
 @Component({
     selector: 'app-subjects',
@@ -11,7 +12,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class SubjectsComponent implements OnInit {
 
     subjects: Subject[];
-    selectedSubject;
+    students: Student[];
+    selectedSubject: Subject;
+    selectedStudent: Student;
 
     addSubjectForm = new FormGroup({
         naziv: new FormControl('', Validators.required),
@@ -53,6 +56,7 @@ export class SubjectsComponent implements OnInit {
             bodoviESPB: subject.bodoviESPB,
             nastavnikId: subject.nastavnikId
         });
+        this.getStudentsOnSubject();
     }
 
     onSubmit() {
@@ -85,6 +89,18 @@ export class SubjectsComponent implements OnInit {
                 console.log(err);
             });
         document.getElementById('closeModal').click();
+    }
+
+    getStudentsOnSubject() {
+        this.subjectsService.getStudentsOnSubject(this.selectedSubject.id).subscribe((data: Student[]) => {
+            this.students = data;
+        });
+    }
+
+    deleteStudentFromSubject(studentId) {
+        this.subjectsService.removeStudentFromSubject(this.selectedSubject.id, studentId).subscribe((data: any) => {
+            this.getStudentsOnSubject();
+        });
     }
 
 }

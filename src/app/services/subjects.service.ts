@@ -25,4 +25,16 @@ export class SubjectsService {
     deleteSubject(id) {
         return this.http.delete(this.rootUrl + '/' + id);
     }
+
+    getStudentsOnSubject(id) {
+        return this.http.get(this.rootUrl + '/' + id + '/ucenici');
+    }
+
+    addStudentTnSubject(predmetId, ucenikId) {
+        return this.http.post(this.rootUrl + '/' + predmetId + '/ucenik/' + ucenikId, null);
+    }
+
+    removeStudentFromSubject(predmetId, ucenikId) {
+        return this.http.delete(this.rootUrl + '/' + predmetId + '/ucenik/' + ucenikId);
+    }
 }

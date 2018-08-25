@@ -120,6 +120,74 @@
                                   </form>
                               </div>
                           </div>
+
+                          <div class="card">
+                              <div class="card-header card-header-danger">
+                                  <h4 class="card-title">Edit Students on Subject</h4>
+                              </div>
+                              <div class="card-body">
+                                  <table class="table">
+                                      <thead class=" text-primary">
+                                      <th>
+                                          ID
+                                      </th>
+                                      <th>
+                                          Name
+                                      </th>
+                                      <th>
+                                          Surename
+                                      </th>
+                                      <th>
+                                          Address
+                                      </th>
+                                      <th>
+                                          Phone
+                                      </th>
+                                      <th>
+                                          Birth Date
+                                      </th>
+                                      <th>
+                                          Pol
+                                      </th>
+                                      <th>
+                                          Details
+                                      </th>
+                                      </thead>
+                                      <tbody>
+                                      <tr *ngFor="let student of students; let i=index;">
+                                          <td>
+                                              {{student.id}}
+                                          </td>
+                                          <td>
+                                              {{student.ime}}
+                                          </td>
+                                          <td>
+                                              {{student.prezime}}
+                                          </td>
+                                          <td>
+                                              {{student.adresa}}
+                                          </td>
+                                          <td>
+                                              {{student.telefon}}
+                                          </td>
+                                          <td>
+                                              {{student.datumRodjenja}}
+                                          </td>
+                                          <td>
+                                              {{student.pol}}
+                                          </td>
+                                          <td>
+                                              <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                                      aria-label="Delete"
+                                                      (click)='deleteStudentFromSubject(student.id)'>Delete Student
+                                              </button>
+                                          </td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+
                       </div>
                   </div>
               </div>
