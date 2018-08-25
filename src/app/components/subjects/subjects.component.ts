@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SubjectsService} from '../../services/subjects.service';
 import {Subject} from '../../model/subject';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -12,9 +12,6 @@ export class SubjectsComponent implements OnInit {
 
     subjects: Subject[];
     selectedSubject;
-
-    @ViewChild('closeModal') closeModal: HTMLButtonElement;
-    @ViewChild('closeModalAdd') closeModalAdd: HTMLButtonElement;
 
     addSubjectForm = new FormGroup({
         naziv: new FormControl('', Validators.required),
@@ -66,7 +63,7 @@ export class SubjectsComponent implements OnInit {
             (err: any) => {
                 console.log(err);
             });
-        closeModal.click();
+        document.getElementById('closeModal').click();
     }
 
     addUser() {
@@ -77,7 +74,7 @@ export class SubjectsComponent implements OnInit {
             (err: any) => {
                 console.log(err);
             });
-        closeModalAdd.click();
+        document.getElementById('closeModalAdd').click();
     }
 
     deleteSubject() {
@@ -87,7 +84,7 @@ export class SubjectsComponent implements OnInit {
             (err: any) => {
                 console.log(err);
             });
-        closeModal.click();
+        document.getElementById('closeModal').click();
     }
 
 }
