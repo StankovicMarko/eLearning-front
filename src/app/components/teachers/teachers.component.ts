@@ -1,25 +1,24 @@
-import { Component, OnInit , ViewChild} from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { UsersService } from '../../services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { Teacher } from '../../model/teacher';
 
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-teachers',
+  templateUrl: './teachers.component.html',
+  styleUrls: ['./teachers.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class TeachersComponent implements OnInit {
 
-  public admins;
 
+  public teachers;
   public selectedUser;
 
-
- @ViewChild('closeModal') closeModal: HTMLButtonElement;
- @ViewChild('closeModalAdd') closeModalAdd: HTMLButtonElement;
+  @ViewChild('closeModal') closeModal: HTMLButtonElement;
+  @ViewChild('closeModalAdd') closeModalAdd: HTMLButtonElement;
 
 
   updateUserForm = new FormGroup({
@@ -31,7 +30,8 @@ export class UsersComponent implements OnInit {
     mestoId: new FormControl(''),
     telefon: new FormControl(''),
     datumRodjenja: new FormControl(''),
-    pol: new FormControl('')
+    pol: new FormControl(''),
+    nastavnikTipId: new FormControl('')
   });
 
 
@@ -44,30 +44,25 @@ export class UsersComponent implements OnInit {
     mestoId: new FormControl('', Validators.required),
     telefon: new FormControl('', Validators.required),
     datumRodjenja: new FormControl('', Validators.required),
-    pol: new FormControl('', Validators.required)
+    pol: new FormControl('', Validators.required),
+    nastavnikTipId: new FormControl('', Validators.required)
   });
-
 
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
 
-    //ovde ces reci, e a ko je rola admin uzmi sve ako nije uzmi samo 2
-
-    this.getAdmins();
-
-
+    this.getTeachers();
   }
 
-  getAdmins() {
-    this.usersService.getAdmins().subscribe(
-      data => { this.admins = data },
+  getTeachers() {
+    this.usersService.getTeachers().subscribe(
+      data => { this.teachers = data },
       err => console.error(err),
-      () => console.log('done loading admins')
+      () => console.log('done loading teachers')
     );
   }
-
 
 
   Selected(user: any) {
@@ -81,17 +76,19 @@ export class UsersComponent implements OnInit {
       mestoId: user.mestoId,
       telefon: user.telefon,
       datumRodjenja: user.datumRodjenja,
-      pol: user.pol
+      pol: user.pol,
+      nastavnikTipId: user.nastavnikTipId
     });
 
   }
 
   onSubmit() {
 
-    let user = Object.assign({},this.updateUserForm.value);
+    let user = new Teacher();
+    Object.assign(user,this.updateUserForm.value);
     user.password = this.selectedUser.password;
     this.usersService.updateUser(user).subscribe((data: any) => {
-      this.getAdmins();
+      this.getTeachers();
     },
       (err: any) => {
         console.log(err);
@@ -101,9 +98,10 @@ export class UsersComponent implements OnInit {
 
   addUser() {
 
-    let user = Object.assign({},this.addUserForm.value);
+    let user = new Teacher();
+    Object.assign(user,this.addUserForm.value);
     this.usersService.addUser(user).subscribe((data: any) => {
-      this.getAdmins();
+      this.getTeachers();
 
     },
       (err: any) => {
@@ -113,8 +111,10 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser() {
-    this.usersService.deleteUser(this.selectedUser).subscribe((data: any) => {
-      this.getAdmins();
+      let user = new Teacher();
+      Object.assign(user,this.selectedUser);
+    this.usersService.deleteUser(user).subscribe((data: any) => {
+      this.getTeachers();
     },
       (err: any) => {
         console.log(err);

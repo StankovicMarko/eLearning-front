@@ -9,6 +9,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 
 import { UsersComponent } from '../../components/users/users.component';
+import { TeachersComponent } from '../../components/teachers/teachers.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -55,6 +56,8 @@ export const AdminLayoutRoutes: Routes = [
     //     }]
     // }
     { path: 'users',      component: UsersComponent },
+    { path: 'teachers',      component: TeachersComponent },
+
 
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },

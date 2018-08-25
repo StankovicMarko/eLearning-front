@@ -12,6 +12,9 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 import { UsersComponent } from '../../components/users/users.component';
 
+import { TeachersComponent } from '../../components/teachers/teachers.component';
+
+
 
 import {
   MatButtonModule,
@@ -37,7 +40,8 @@ import {
     IconsComponent,
     NotificationsComponent,
     UpgradeComponent,
-    UsersComponent
+    UsersComponent,
+    TeachersComponent
   ]
 })
 

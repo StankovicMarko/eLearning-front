@@ -13,7 +13,9 @@ export let ROUTES: RouteInfo[];
 
 export const ADMIN_ROUTES: RouteInfo[] = [
 
-    {path: '/users', title: 'Users', icon: 'perm_identity', class: ''},
+    {path: '/users', title: 'Admins', icon: 'perm_identity', class: ''},
+    {path: '/teachers', title: 'Teachers', icon: 'assignment_ind', class: ''},
+
     {path: '/subjects', title: 'Subjects', icon: 'subject', class: ''},
     {path: '/subject-activities', title: 'Subject Activities', icon: 'assignment', class: ''},
     {path: '/payments', title: 'Payments', icon: 'payment', class: ''}
