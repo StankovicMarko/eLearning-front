@@ -15,6 +15,8 @@ export const ADMIN_ROUTES: RouteInfo[] = [
 
     {path: '/users', title: 'Admins', icon: 'perm_identity', class: ''},
     {path: '/teachers', title: 'Teachers', icon: 'assignment_ind', class: ''},
+    {path: '/students', title: 'Students', icon: 'face', class: ''},
+
 
     {path: '/subjects', title: 'Subjects', icon: 'subject', class: ''},
     {path: '/subject-activities', title: 'Subject Activities', icon: 'assignment', class: ''},

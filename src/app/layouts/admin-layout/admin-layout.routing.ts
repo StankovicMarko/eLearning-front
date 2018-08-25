@@ -10,6 +10,8 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 import { UsersComponent } from '../../components/users/users.component';
 import { TeachersComponent } from '../../components/teachers/teachers.component';
+import { StudentsComponent } from '../../components/students/students.component';
+
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -57,6 +59,8 @@ export const AdminLayoutRoutes: Routes = [
     // }
     { path: 'users',      component: UsersComponent },
     { path: 'teachers',      component: TeachersComponent },
+    { path: 'students',      component: StudentsComponent },
+
 
 
     { path: 'dashboard',      component: DashboardComponent },

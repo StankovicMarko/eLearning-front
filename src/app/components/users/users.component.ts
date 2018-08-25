@@ -20,7 +20,6 @@ export class UsersComponent implements OnInit {
 
 
   updateUserForm = new FormGroup({
-    id: new FormControl(''),
     username: new FormControl(''),
     ime: new FormControl(''),
     prezime: new FormControl(''),
@@ -87,6 +86,7 @@ export class UsersComponent implements OnInit {
 
     let user = Object.assign({},this.updateUserForm.value);
     user.password = this.selectedUser.password;
+    user.id = this.selectedUser;
     this.usersService.updateUser(user).subscribe((data: any) => {
       this.getAdmins();
     },

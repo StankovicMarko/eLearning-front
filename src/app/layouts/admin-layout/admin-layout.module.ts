@@ -14,6 +14,8 @@ import { UsersComponent } from '../../components/users/users.component';
 
 import { TeachersComponent } from '../../components/teachers/teachers.component';
 
+import { StudentsComponent } from '../../components/students/students.component';
+
 
 
 import {
@@ -41,7 +43,8 @@ import {
     NotificationsComponent,
     UpgradeComponent,
     UsersComponent,
-    TeachersComponent
+    TeachersComponent,
+    StudentsComponent
   ]
 })
 
