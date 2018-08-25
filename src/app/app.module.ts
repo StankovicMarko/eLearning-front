@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { HttpModule} from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
 import { TypographyComponent } from './typography/typography.component';
 import { IconsComponent } from './icons/icons.component';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -28,12 +27,16 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthInterceptor } from './guard/auth.interceptor';
 
+import { UsersService } from './services/users.service';
+
+
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+     ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     RouterModule,
@@ -48,7 +51,9 @@ import { AuthInterceptor } from './guard/auth.interceptor';
     LoginComponent
 
   ],
-  providers: [AuthService, AuthGuard,
+  providers: [AuthService,
+    AuthGuard,
+    UsersService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
