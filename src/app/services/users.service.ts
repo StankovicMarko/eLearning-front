@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Teacher } from '../model/teacher';
 import { Admin } from '../model/admin';
+import { Student } from '../model/student';
+
 
 
 @Injectable()
@@ -42,6 +44,10 @@ export class UsersService {
 
       return this.http.put(this.rootUrl + '/users/admin/' + user.id, user, { headers: headers });
     }
+    else if (user instanceof Student) {
+
+     return this.http.put(this.rootUrl + '/users/ucenik/' + user.id, user, { headers: headers });
+   }
   }
 
   deleteUser(user) {
@@ -52,7 +58,10 @@ export class UsersService {
     } else if (user instanceof Admin) {
 
       return this.http.delete(this.rootUrl + '/users/admin/' + user.id, { headers: headers });
-    }
+    }else if (user instanceof Student) {
+
+     return this.http.delete(this.rootUrl + '/users/ucenik/' + user.id, user, { headers: headers });
+   }
   }
 
   addUser(user) {
@@ -67,6 +76,9 @@ export class UsersService {
       return this.http.post(this.rootUrl + '/users/admin/', user, { headers: headers });
 
 
-    }
+    }else if (user instanceof Student) {
+
+     return this.http.post(this.rootUrl + '/users/ucenik/', user, { headers: headers });
+   }
 
   }

@@ -27,7 +27,6 @@ export class StudentsComponent implements OnInit {
       telefon: new FormControl(''),
       datumRodjenja: new FormControl(''),
       pol: new FormControl(''),
-      nastavnikTipId: new FormControl(''),
       indeks: new FormControl(''),
       radniStatus: new FormControl(''),
       zanimanje: new FormControl(''),
@@ -45,7 +44,6 @@ export class StudentsComponent implements OnInit {
       telefon: new FormControl('', Validators.required),
       datumRodjenja: new FormControl('', Validators.required),
       pol: new FormControl('', Validators.required),
-      nastavnikTipId: new FormControl('', Validators.required),
       indeks: new FormControl('', Validators.required),
       radniStatus: new FormControl('', Validators.required),
       zanimanje: new FormControl(''),
@@ -83,7 +81,10 @@ export class StudentsComponent implements OnInit {
         telefon: user.telefon,
         datumRodjenja: user.datumRodjenja,
         pol: user.pol,
-        nastavnikTipId: user.nastavnikTipId
+        indeks: user.indeks,
+        radniStatus: user.radniStatus,
+        zanimanje: user.zanimanje,
+        brojRacuna: user.brojRacuna
       });
 
     }
