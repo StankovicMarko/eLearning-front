@@ -2,7 +2,7 @@ import { Component, OnInit , ViewChild} from '@angular/core';
 
 import { Observable } from 'rxjs/Rx';
 import { UsersService } from '../../services/users.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -23,7 +23,9 @@ export class UsersComponent implements OnInit {
 
 
 
-//  @ViewChild('closeModal') closeModal: HTMLButtonElement;
+ @ViewChild('closeModal') closeModal: HTMLButtonElement;
+ @ViewChild('closeModalAdd') closeModalAdd: HTMLButtonElement;
+
 
   updateUserForm = new FormGroup({
     id: new FormControl(''),
@@ -35,6 +37,19 @@ export class UsersComponent implements OnInit {
     telefon: new FormControl(''),
     datumRodjenja: new FormControl(''),
     pol: new FormControl('')
+  });
+
+
+  addUserForm = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    ime: new FormControl('', Validators.required),
+    prezime: new FormControl('', Validators.required),
+    adresa: new FormControl('', Validators.required),
+    mestoId: new FormControl('', Validators.required),
+    telefon: new FormControl('', Validators.required),
+    datumRodjenja: new FormControl('', Validators.required),
+    pol: new FormControl('', Validators.required)
   });
 
 
@@ -109,6 +124,19 @@ export class UsersComponent implements OnInit {
         console.log(err);
       });
       closeModal.click();
+  }
+
+  addUser() {
+
+    let user = Object.assign({},this.addUserForm.value);
+    this.usersService.addUser(user).subscribe((data: any) => {
+      this.getAdmins();
+
+    },
+      (err: any) => {
+        console.log(err);
+      });
+      closeModalAdd.click();
   }
 
   deleteUser() {

@@ -42,4 +42,10 @@ export class UsersService {
     return this.http.delete(this.rootUrl+'/users/admin/'+id, {headers : headers});
   }
 
+  addUser(user){
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth':'False'});
+
+    return this.http.post(this.rootUrl+'/users/admin/',user, {headers : headers});
+  }
+
 }
