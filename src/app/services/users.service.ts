@@ -60,7 +60,7 @@ export class UsersService {
       return this.http.delete(this.rootUrl + '/users/admin/' + user.id, { headers: headers });
     }else if (user instanceof Student) {
 
-     return this.http.delete(this.rootUrl + '/users/ucenik/' + user.id, user, { headers: headers });
+     return this.http.delete(this.rootUrl + '/users/ucenik/' + user.id, { headers: headers });
    }
   }
 
@@ -82,3 +82,4 @@ export class UsersService {
    }
 
   }
+}
