@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { UsersService } from '../../services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Teacher } from '../../model/teacher';
+
+
 
 
 @Component({
@@ -16,9 +18,6 @@ export class TeachersComponent implements OnInit {
 
   public teachers;
   public selectedUser;
-
-  @ViewChild('closeModal') closeModal: HTMLButtonElement;
-  @ViewChild('closeModalAdd') closeModalAdd: HTMLButtonElement;
 
 
   updateUserForm = new FormGroup({
@@ -93,7 +92,8 @@ export class TeachersComponent implements OnInit {
       (err: any) => {
         console.log(err);
       });
-      this.closeModal.click();
+      document.getElementById('closeModal').click();
+
   }
 
   addUser() {
@@ -107,7 +107,7 @@ export class TeachersComponent implements OnInit {
       (err: any) => {
         console.log(err);
       });
-      this.closeModalAdd.click();
+      document.getElementById('closeModalAdd').click();
   }
 
   deleteUser() {
@@ -119,7 +119,7 @@ export class TeachersComponent implements OnInit {
       (err: any) => {
         console.log(err);
       });
-      this.closeModal.click();
+      document.getElementById('closeModal').click();
   }
 
 }

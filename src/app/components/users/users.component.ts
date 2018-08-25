@@ -1,4 +1,4 @@
-import { Component, OnInit , ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Rx';
 import { UsersService } from '../../services/users.service';
@@ -17,9 +17,6 @@ export class UsersComponent implements OnInit {
 
   public selectedUser;
 
-
- @ViewChild('closeModal') closeModal: HTMLButtonElement;
- @ViewChild('closeModalAdd') closeModalAdd: HTMLButtonElement;
 
 
   updateUserForm = new FormGroup({
@@ -96,7 +93,7 @@ export class UsersComponent implements OnInit {
       (err: any) => {
         console.log(err);
       });
-      this.closeModal.click();
+      document.getElementById('closeModal').click();
   }
 
   addUser() {
@@ -109,7 +106,7 @@ export class UsersComponent implements OnInit {
       (err: any) => {
         console.log(err);
       });
-      this.closeModalAdd.click();
+      document.getElementById('closeModalAdd').click();
   }
 
   deleteUser() {
@@ -119,7 +116,7 @@ export class UsersComponent implements OnInit {
       (err: any) => {
         console.log(err);
       });
-      this.closeModal.click();
+      document.getElementById('closeModal').click();
   }
 
 }
