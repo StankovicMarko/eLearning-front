@@ -1,4 +1,4 @@
-export class Student {
+export class Admin {
 
       id: number;
       ime: string;
@@ -10,8 +10,4 @@ export class Student {
       username: string;
       password: string;
       mestoId: number;
-      indeks: string;
-      radniStatus: string;
-      zanimanje?: string;
-      brojRacuna: string;
 }
