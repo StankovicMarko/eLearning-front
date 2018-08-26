@@ -1,0 +1,253 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+
+    <div class="modal fade" id="addModal" tabindex="-1" *ngIf="currentUserType == 'Administrator'"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+
+          <div class="modal-content main-content">
+            <div class="container-fluid">
+              <div class="row">
+
+                <div class="card">
+                  <div class="card-header card-header-danger">
+                    <h4 class="card-title">Add Payment</h4>
+                    <p class="card-category">Complete your profile</p>
+                  </div>
+                  <div class="card-body">
+                    <form [formGroup]="addPaymentForm" (ngSubmit)="addPayment()">
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Acc. Num" type="text" formControlName="brojRacuna">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Payer" formControlName="uplatilac">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Purpose" formControlName="svrhaUplate" >
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Student" type="text" formControlName="ucenikId">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Date" type="text" formControlName="datumUplate" >
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Amount" type="text" formControlName="iznos">
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+
+                      <button mat-raised-button type="submit" class="btn btn-danger pull-left"
+                      [disabled]="!addPaymentForm.valid">Create Payment</button>
+
+                      <button mat-raised-button type="button"
+                      class="btn btn-danger pull-right close" aria-label="Close"
+                      data-dismiss="modal" id='closeModalAdd'>Close</button>
+
+
+                      <div class="clearfix"></div>
+
+
+                    </form>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div *ngIf="selectedPayment && currentUserType == 'Administrator'"
+    class="modal fade" id="editModal" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+
+          <div class="modal-content main-content">
+            <div class="container-fluid">
+              <div class="row">
+
+                <div class="card">
+                  <div class="card-header card-header-danger">
+                    <h4 class="card-title">Edit Payment</h4>
+                    <p class="card-category"></p>
+                  </div>
+                  <div class="card-body">
+                    <form [formGroup]="updatePaymentForm" (ngSubmit)="onSubmit()">
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Acc. Num" type="text" formControlName="brojRacuna">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Payer" formControlName="uplatilac">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Purpose" formControlName="svrhaUplate" >
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Student" type="text" formControlName="ucenikId">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Date" type="text" formControlName="datumUplate" >
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Amount" type="text" formControlName="iznos">
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+
+                      <button mat-raised-button type="submit" class="btn btn-danger pull-left">Update Payment</button>
+
+                      <button mat-raised-button type="button" class="btn btn-warning pull-right" aria-label="Delete" (click)='deletePayment()'>Delete Payment</button>
+
+
+
+                      <div class="clearfix"></div>
+
+                      <button mat-raised-button type="button"
+                      class="btn btn-danger pull-right close" aria-label="Close"
+                      data-dismiss="modal" id='closeModal'>Close</button>
+
+                    </form>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="row" *ngIf="payments">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0 pull-left"> List of Payments</h4>
+            <button *ngIf="currentUserType == 'Administrator'" mat-raised-button type="button" class="btn btn-info pull-right"
+            data-toggle="modal" data-target="#addModal">
+                        Add New
+                      </button>
+
+
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Acc. Number
+                  </th>
+                  <th>
+                    Payer
+                  </th>
+                  <th>
+                    Purpose
+                  </th>
+                  <th>
+                    Date
+                  </th>
+                  <th>
+                    Amount
+                  </th>
+                  <th>
+                    Student
+                  </th>
+                  <th *ngIf="currentUserType == 'Administrator'">
+                    Details
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let p of payments; let i=index;" (click)="Selected(p);">
+                    <td>
+                      {{p.id}}
+                    </td>
+                    <td>
+                      {{p.brojRacuna}}
+                    </td>
+                    <td>
+                      {{p.uplatilac}}
+                    </td>
+                    <td>
+                      {{p.svrhaUplate}}
+                    </td>
+                    <td>
+                      {{p.datumUplate}}
+                    </td>
+                    <td>
+                      {{p.iznos}}
+                    </td>
+                    <td>
+                      {{p.ucenikId}}
+                    </td>
+
+                    <td *ngIf="currentUserType == 'Administrator'">
+
+                      <button mat-raised-button type="button" class="btn btn-danger"
+                      data-toggle="modal" data-target="#editModal">
+                                  See More
+                                </button>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
