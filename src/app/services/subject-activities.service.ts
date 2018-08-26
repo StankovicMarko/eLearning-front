@@ -15,8 +15,18 @@ export class SubjectActivitiesService {
         return this.http.get(this.rootUrl);
     }
 
-    updateSubjectActivity(subjectActivity: SubjectActivity) {
+    addSubjectActivity(subjectActivity: SubjectActivity) {
         console.log(subjectActivity);
+        const data = {
+            datumAktivnosti: subjectActivity.datumAktivnosti,
+            maxBrojBodova: subjectActivity.maxBrojBodova,
+            nastavnaAktivnostTipId: subjectActivity.nastavnaAktivnostTipDto.id,
+            predmetId: subjectActivity.predmetId
+        };
+        return this.http.post(this.rootUrl, data);
+    }
+
+    updateSubjectActivity(subjectActivity: SubjectActivity) {
         const data = {
             datumAktivnosti: subjectActivity.datumAktivnosti,
             maxBrojBodova: subjectActivity.maxBrojBodova,

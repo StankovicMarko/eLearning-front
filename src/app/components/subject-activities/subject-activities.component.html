@@ -29,11 +29,16 @@
                                                            formControlName="maxBrojBodova">
                                                 </mat-form-field>
                                             </div>
-                                            <div class="col-md-3">
-                                                <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="Subject activity type"
-                                                           formControlName="nastavnaAktivnostId">
-                                                </mat-form-field>
+                                            <div class="col-md-3 typeHead">
+                                                <input type="text" list="saTypesAdd" name="types" [(ngModel)]='selected'
+                                                       (change)="selectSubjectActivityType(selected)"
+                                                       formControlName="nastavnaAktivnostTipDto"/>
+                                                <datalist id="saTypesAdd">
+                                                    <select>
+                                                        <option *ngFor="let sat of subjectActivityTypes"
+                                                                [value]="sat.naziv"></option>
+                                                    </select>
+                                                </datalist>
                                             </div>
                                             <div class="col-md-3">
                                                 <mat-form-field class="example-full-width">

@@ -21,7 +21,7 @@ export class SubjectActivitiesComponent implements OnInit {
     addSubjectActivityForm = new FormGroup({
         datumAktivnosti: new FormControl('', Validators.required),
         maxBrojBodova: new FormControl('', Validators.required),
-        nastavnaAktivnostId: new FormControl('', Validators.required),
+        nastavnaAktivnostTipDto: new FormControl('', Validators.required),
         predmetId: new FormControl('', Validators.required),
     });
 
@@ -54,6 +54,14 @@ export class SubjectActivitiesComponent implements OnInit {
     }
 
     addSubjectActivity() {
+        const subjectActivity = Object.assign({}, this.addSubjectActivityForm.value);
+        subjectActivity.nastavnaAktivnostTipDto = this.selectedSubjectActivityType;
+        this.saService.addSubjectActivity(subjectActivity).subscribe((data: SubjectActivity) => {
+                this.getAllSubjectActivities();
+            },
+            (err: any) => {
+                console.log(err);
+            });
         document.getElementById('closeModalAdd').click();
     }
 
@@ -79,6 +87,7 @@ export class SubjectActivitiesComponent implements OnInit {
 
     onSubmit() {
         const subjectActivity = Object.assign({}, this.updateSubjectActivityForm.value);
+        this.selectSubjectActivityType(subjectActivity.nastavnaAktivnostTipDto);
         subjectActivity.nastavnaAktivnostTipDto = this.selectedSubjectActivityType;
         this.saService.updateSubjectActivity(subjectActivity).subscribe((data: SubjectActivity) => {
                 this.getAllSubjectActivities();
