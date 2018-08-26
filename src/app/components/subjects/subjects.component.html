@@ -1,0 +1,271 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+      <!-- Modal -->
+      <div class="modal fade" id="addModal" tabindex="-1"
+           role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+
+              <div class="modal-content main-content">
+                  <div class="container-fluid">
+                      <div class="row">
+
+                          <div class="card">
+                              <div class="card-header card-header-danger">
+                                  <h4 class="card-title">Add Subject</h4>
+                                  <!--<p class="card-category">Complete your profile</p>-->
+                              </div>
+                              <div class="card-body">
+                                  <form [formGroup]="addSubjectForm" (ngSubmit)="addUser()">
+                                      <div class="row">
+                                          <div class="col-md-3">
+                                              <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="Naziv" type="text"
+                                                         formControlName="naziv">
+                                              </mat-form-field>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="bodovi ESPB" type="text"
+                                                         formControlName="bodoviESPB">
+                                              </mat-form-field>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="nastavnik Id"
+                                                         formControlName="nastavnikId">
+                                              </mat-form-field>
+                                          </div>
+                                      </div>
+                                      <button mat-raised-button type="submit" class="btn btn-danger pull-left"
+                                              [disabled]="!addSubjectForm.valid">Create Subject
+                                      </button>
+
+                                      <button mat-raised-button type="button"
+                                              class="btn btn-danger pull-right close" aria-label="Close"
+                                              data-dismiss="modal" id='closeModalAdd'>Close
+                                      </button>
+
+
+                                      <div class="clearfix"></div>
+
+
+                                  </form>
+                              </div>
+                          </div>
+
+
+                      </div>
+                  </div>
+              </div>
+
+
+          </div>
+      </div>
+
+
+      <!-- Modal -->
+      <div *ngIf="selectedSubject" class="modal fade" id="userModal" tabindex="-1" role="dialog"
+           aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+
+              <div class="modal-content main-content">
+                  <div class="container-fluid">
+                      <div class="row">
+
+                          <div class="card">
+                              <div class="card-header card-header-danger">
+                                  <h4 class="card-title">Edit Subject</h4>
+                                  <!--<p class="card-category">Complete your profile</p>-->
+                              </div>
+                              <div class="card-body">
+                                  <form [formGroup]="updateSubjectForm" (ngSubmit)="onSubmit()">
+                                      <div class="row">
+                                          <div class="col-md-3">
+                                              <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="Naziv" type="text"
+                                                         formControlName="naziv">
+                                              </mat-form-field>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="bodovi ESPB" type="text"
+                                                         formControlName="bodoviESPB">
+                                              </mat-form-field>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="nastavnik Id"
+                                                         formControlName="nastavnikId">
+                                              </mat-form-field>
+                                          </div>
+                                      </div>
+
+
+                                      <button mat-raised-button type="submit" class="btn btn-danger pull-left">Update
+                                          Subject
+                                      </button>
+
+                                      <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                              aria-label="Delete" (click)='deleteSubject()'>Delete Subject
+                                      </button>
+
+
+                                      <div class="clearfix"></div>
+
+                                      <button mat-raised-button type="button"
+                                              class="btn btn-danger pull-right close" aria-label="Close"
+                                              data-dismiss="modal" id='closeModal'>Close
+                                      </button>
+                                  </form>
+                              </div>
+                          </div>
+
+                          <div class="card">
+                              <div class="card-header card-header-danger">
+                                  <h4 class="card-title">Edit Students on Subject</h4>
+                                  <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                          aria-label="Add"
+                                          (click)='addStudentToSubject()'>Add Student
+                                  </button>
+                                  <div class="typeHead pull-right">
+                                      <input type="text" list="students" name="student" [(ngModel)]='selectedStudentStr'
+                                             (change)="selectStudentToAddOnSubject(selectedStudentStr)"/>
+                                      <datalist id="students">
+                                          <select>
+                                              <option *ngFor="let student of students"
+                                                      [value]="student.indeks + ' ' + student.ime + ' ' + student.prezime"></option>
+                                          </select>
+                                      </datalist>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <table class="table">
+                                      <thead class=" text-primary">
+                                      <th>
+                                          ID
+                                      </th>
+                                      <th>
+                                          Name
+                                      </th>
+                                      <th>
+                                          Surename
+                                      </th>
+                                      <th>
+                                          Address
+                                      </th>
+                                      <th>
+                                          Phone
+                                      </th>
+                                      <th>
+                                          Birth Date
+                                      </th>
+                                      <th>
+                                          Pol
+                                      </th>
+                                      <th>
+                                          Details
+                                      </th>
+                                      </thead>
+                                      <tbody>
+                                      <tr *ngFor="let student of studentsOnSubject; let i=index;">
+                                          <td>
+                                              {{student.id}}
+                                          </td>
+                                          <td>
+                                              {{student.ime}}
+                                          </td>
+                                          <td>
+                                              {{student.prezime}}
+                                          </td>
+                                          <td>
+                                              {{student.adresa}}
+                                          </td>
+                                          <td>
+                                              {{student.telefon}}
+                                          </td>
+                                          <td>
+                                              {{student.datumRodjenja}}
+                                          </td>
+                                          <td>
+                                              {{student.pol}}
+                                          </td>
+                                          <td>
+                                              <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                                      aria-label="Delete"
+                                                      (click)='deleteStudentFromSubject(student.id)'>Delete Student
+                                              </button>
+                                          </td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+              <h4 class="card-title mt-0 pull-left"> List of Subjects</h4>
+              <button mat-raised-button type="button" class="btn btn-info pull-right"
+                      data-toggle="modal" data-target="#addModal">
+                  Add New
+              </button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                <th>
+                  ID
+                </th>
+                <th>
+                  Name
+                </th>
+                <th>
+                  ESPB
+                </th>
+                <th>
+                    Teacher Id
+                </th>
+                <th>
+                    Details
+                </th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let subject of subjects; let i=index;" (click)="Selected(subject);">
+                    <td>
+                        {{subject.id}}
+                  </td>
+                  <td>
+                      {{subject.naziv}}
+                  </td>
+                  <td>
+                      {{subject.bodoviESPB}}
+                  </td>
+                    <td>
+                        {{subject.nastavnikId}}
+                    </td>
+                    <td>
+                        <button mat-raised-button type="button" class="btn btn-danger"
+                                data-toggle="modal" data-target="#userModal">
+                            See More
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
