@@ -30,8 +30,9 @@ export class SubjectsService {
         return this.http.get(this.rootUrl + '/' + id + '/ucenici');
     }
 
-    addStudentTnSubject(predmetId, ucenikId) {
-        return this.http.post(this.rootUrl + '/' + predmetId + '/ucenik/' + ucenikId, null);
+    addStudentToSubject(predmetId, ucenikId) {
+        const data = {};
+        return this.http.put(this.rootUrl + '/' + predmetId + '/ucenik/' + ucenikId, data);
     }
 
     removeStudentFromSubject(predmetId, ucenikId) {

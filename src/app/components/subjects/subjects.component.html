@@ -124,6 +124,20 @@
                           <div class="card">
                               <div class="card-header card-header-danger">
                                   <h4 class="card-title">Edit Students on Subject</h4>
+                                  <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                          aria-label="Add"
+                                          (click)='addStudentToSubject()'>Add Student
+                                  </button>
+                                  <div class="typeHead pull-right">
+                                      <input type="text" list="students" name="student" [(ngModel)]='selectedStudentStr'
+                                             (change)="selectStudentToAddOnSubject(selectedStudentStr)"/>
+                                      <datalist id="students">
+                                          <select>
+                                              <option *ngFor="let student of students"
+                                                      [value]="student.indeks + ' ' + student.ime + ' ' + student.prezime"></option>
+                                          </select>
+                                      </datalist>
+                                  </div>
                               </div>
                               <div class="card-body">
                                   <table class="table">
@@ -154,7 +168,7 @@
                                       </th>
                                       </thead>
                                       <tbody>
-                                      <tr *ngFor="let student of students; let i=index;">
+                                      <tr *ngFor="let student of studentsOnSubject; let i=index;">
                                           <td>
                                               {{student.id}}
                                           </td>

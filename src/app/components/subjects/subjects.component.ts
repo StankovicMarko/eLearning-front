@@ -3,6 +3,7 @@ import {SubjectsService} from '../../services/subjects.service';
 import {Subject} from '../../model/subject';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Student} from '../../model/student';
+import {UsersService} from '../../services/users.service';
 
 @Component({
     selector: 'app-subjects',
@@ -13,8 +14,10 @@ export class SubjectsComponent implements OnInit {
 
     subjects: Subject[];
     students: Student[];
+    studentsOnSubject: Student[];
     selectedSubject: Subject;
     selectedStudent: Student;
+    selectedStudentStr: string;
 
     addSubjectForm = new FormGroup({
         naziv: new FormControl('', Validators.required),
@@ -29,7 +32,7 @@ export class SubjectsComponent implements OnInit {
         nastavnikId: new FormControl(''),
     });
 
-    constructor(private subjectsService: SubjectsService) {
+    constructor(private subjectsService: SubjectsService, private usersService: UsersService) {
     }
 
     ngOnInit() {
@@ -56,6 +59,7 @@ export class SubjectsComponent implements OnInit {
             bodoviESPB: subject.bodoviESPB,
             nastavnikId: subject.nastavnikId
         });
+        this.getAllStudent();
         this.getStudentsOnSubject();
     }
 
@@ -91,9 +95,15 @@ export class SubjectsComponent implements OnInit {
         document.getElementById('closeModal').click();
     }
 
+    getAllStudent() {
+        this.usersService.getStudents().subscribe((students: Student[]) => {
+            this.students = students;
+        });
+    }
+
     getStudentsOnSubject() {
         this.subjectsService.getStudentsOnSubject(this.selectedSubject.id).subscribe((data: Student[]) => {
-            this.students = data;
+            this.studentsOnSubject = data;
         });
     }
 
@@ -101,6 +111,28 @@ export class SubjectsComponent implements OnInit {
         this.subjectsService.removeStudentFromSubject(this.selectedSubject.id, studentId).subscribe((data: any) => {
             this.getStudentsOnSubject();
         });
+    }
+
+    selectStudentToAddOnSubject(student: string) {
+        this.selectedStudentStr = student;
+        const splitted = student.split(' ');
+        this.selectedStudent = this.findStudentByIndex(splitted[0]);
+    }
+
+    addStudentToSubject() {
+        this.subjectsService.addStudentToSubject(this.selectedSubject.id, this.selectedStudent.id).subscribe((data: any) => {
+            this.getStudentsOnSubject();
+        });
+    }
+
+    findStudentByIndex(indeks): Student {
+        let found = null;
+        this.students.forEach((s: Student) => {
+            if (s.indeks === indeks) {
+                found = s;
+            }
+        });
+        return found;
     }
 
 }
