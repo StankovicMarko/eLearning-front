@@ -26,16 +26,7 @@ export class SubjectActivitiesService {
         return this.http.put(this.rootUrl + '/' + subjectActivity.id, data);
     }
 
-    getSubjectActivityTypes() {
-        return [
-            {
-                'id': 30,
-                'naziv': 'ispit'
-            },
-            {
-                'id': 31,
-                'naziv': 'kolokvijum'
-            }
-        ];
+    deleteSubjectActivity(id) {
+        return this.http.delete(this.rootUrl + '/' + id);
     }
 }

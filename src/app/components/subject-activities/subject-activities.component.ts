@@ -3,6 +3,7 @@ import {SubjectActivitiesService} from '../../services/subject-activities.servic
 import {SubjectActivity} from '../../model/subject-activity';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SubjectActivityType} from '../../model/subject-activity-type';
+import {SubjectsService} from '../../services/subjects.service';
 
 @Component({
     selector: 'app-subject-activities',
@@ -32,7 +33,7 @@ export class SubjectActivitiesComponent implements OnInit {
         predmetId: new FormControl(''),
     });
 
-    constructor(private saService: SubjectActivitiesService) {
+    constructor(private saService: SubjectActivitiesService, private subjectService: SubjectsService) {
     }
 
     ngOnInit() {
@@ -47,14 +48,20 @@ export class SubjectActivitiesComponent implements OnInit {
     }
 
     getAllSubjectActivityType() {
-        this.subjectActivityTypes = this.saService.getSubjectActivityTypes();
-        console.log(this.subjectActivityTypes);
+        this.subjectService.getSubjectActivityTypes().subscribe((data: SubjectActivityType[]) => {
+            this.subjectActivityTypes = data;
+        });
     }
 
     addSubjectActivity() {
+        document.getElementById('closeModalAdd').click();
     }
 
     deleteSubjectActivity() {
+        this.saService.deleteSubjectActivity(this.selectedSubjectActivity.id).subscribe((data: any) => {
+            this.getAllSubjectActivities();
+        });
+        document.getElementById('closeModal').click();
     }
 
     Selected(subjectActivity: SubjectActivity) {
