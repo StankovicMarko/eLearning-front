@@ -66,7 +66,7 @@
 
 
       <!-- Modal -->
-      <div *ngIf="selectedSubject && currentUserType == 'Administrator'" class="modal fade" id="userModal" tabindex="-1" role="dialog"
+      <div *ngIf="selectedSubject && currentUserType != 'Ucenik'" class="modal fade" id="userModal" tabindex="-1" role="dialog"
            aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
 
@@ -103,7 +103,9 @@
                                       </div>
 
 
-                                      <button mat-raised-button type="submit" class="btn btn-danger pull-left">Update
+                                      <button mat-raised-button type="submit"
+                                      *ngIf="currentUserType == 'Administrator'"
+                                      class="btn btn-danger pull-left">Update
                                           Subject
                                       </button>
 
@@ -168,7 +170,7 @@
                                       <th>
                                           Pol
                                       </th>
-                                      <th>
+                                      <th *ngIf="currentUserType == 'Administrator'">
                                           Details
                                       </th>
                                       </thead>
