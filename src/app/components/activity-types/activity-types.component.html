@@ -1,0 +1,166 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+
+    <div class="modal fade" id="addModal" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+
+          <div class="modal-content main-content">
+            <div class="container-fluid">
+              <div class="row">
+
+                <div class="card">
+                  <div class="card-header card-header-danger">
+                    <h4 class="card-title">Add Subject Activity Type</h4>
+                    <p class="card-category"></p>
+                  </div>
+                  <div class="card-body">
+                    <form [formGroup]="addTypeForm" (ngSubmit)="addType()">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Name" type="text" formControlName="naziv">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+
+
+
+                      <button mat-raised-button type="submit" class="btn btn-danger pull-left"
+                      [disabled]="!addTypeForm.valid">Create Subj. Activity Type</button>
+
+                      <button mat-raised-button type="button"
+                      class="btn btn-danger pull-right close" aria-label="Close"
+                      data-dismiss="modal" id='closeModalAdd'>Close</button>
+
+
+                      <div class="clearfix"></div>
+
+
+                    </form>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div *ngIf="selectedType" class="modal fade" id="editModal" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+
+          <div class="modal-content main-content">
+            <div class="container-fluid">
+              <div class="row">
+
+                <div class="card">
+                  <div class="card-header card-header-danger">
+                    <h4 class="card-title">Edit Subject Activity Type</h4>
+                    <p class="card-category"></p>
+                  </div>
+                  <div class="card-body">
+                    <form [formGroup]="updateTypeForm" (ngSubmit)="onSubmit()">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Name" type="text" formControlName="naziv">
+                          </mat-form-field>
+                        </div>
+
+                      </div>
+
+
+                      <button mat-raised-button type="submit" class="btn btn-danger pull-left">Update Subj. Activity Type</button>
+
+                      <button mat-raised-button type="button" class="btn btn-warning pull-right" aria-label="Delete" (click)='deleteType()'>Delete Type</button>
+
+
+
+                      <div class="clearfix"></div>
+
+                      <button mat-raised-button type="button"
+                      class="btn btn-danger pull-right close" aria-label="Close"
+                      data-dismiss="modal" id='closeModal'>Close</button>
+
+                    </form>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="row" *ngIf="types">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0 pull-left"> List of Subject Activity Types</h4>
+            <button mat-raised-button type="button" class="btn btn-info pull-right"
+            data-toggle="modal" data-target="#addModal">
+                        Add New
+                      </button>
+
+
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Details
+                  </th>
+
+                </thead>
+                <tbody>
+                  <tr *ngFor="let t of types; let i=index;" (click)="Selected(t);">
+                    <td>
+                      {{t.id}}
+                    </td>
+                    <td>
+                      {{t.naziv}}
+                    </td>
+
+                    <td>
+
+                      <button mat-raised-button type="button" class="btn btn-danger"
+                      data-toggle="modal" data-target="#editModal">
+                                  See More
+                                </button>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

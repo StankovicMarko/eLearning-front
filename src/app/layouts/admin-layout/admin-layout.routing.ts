@@ -11,6 +11,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { UsersComponent } from '../../components/users/users.component';
 import { TeachersComponent } from '../../components/teachers/teachers.component';
 import { StudentsComponent } from '../../components/students/students.component';
+import { ActivityTypesComponent } from '../../components/activity-types/activity-types.component';
 
 
 
@@ -61,6 +62,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'teachers',      component: TeachersComponent },
     { path: 'students',      component: StudentsComponent },
 
+    { path: 'subject-activities-types', component: ActivityTypesComponent },
 
 
     { path: 'dashboard',      component: DashboardComponent },
