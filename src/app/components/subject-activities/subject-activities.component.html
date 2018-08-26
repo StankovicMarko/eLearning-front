@@ -1,0 +1,214 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <!-- Modal -->
+        <div class="modal fade" id="addModal" tabindex="-1"
+             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <div class="modal-content main-content">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="card">
+                                <div class="card-header card-header-danger">
+                                    <h4 class="card-title">Add Subject Activity</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="addSubjectActivityForm" (ngSubmit)="addSubjectActivity()">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="Date" type="text"
+                                                           formControlName="datumAktivnosti">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="Max points" type="text"
+                                                           formControlName="maxBrojBodova">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3 typeHead">
+                                                <input type="text" list="saTypesAdd" name="types" [(ngModel)]='selected'
+                                                       (change)="selectSubjectActivityType(selected)"
+                                                       formControlName="nastavnaAktivnostTipDto"/>
+                                                <datalist id="saTypesAdd">
+                                                    <select>
+                                                        <option *ngFor="let sat of subjectActivityTypes"
+                                                                [value]="sat.naziv"></option>
+                                                    </select>
+                                                </datalist>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="Subject id"
+                                                           formControlName="predmetId">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <button mat-raised-button type="submit" class="btn btn-danger pull-left"
+                                                [disabled]="!addSubjectActivityForm.valid">Create Subject Activity
+                                        </button>
+
+                                        <button mat-raised-button type="button"
+                                                class="btn btn-danger pull-right close" aria-label="Close"
+                                                data-dismiss="modal" id='closeModalAdd'>Close
+                                        </button>
+
+
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div *ngIf="selectedSubjectActivity" class="modal fade" id="satModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <div class="modal-content main-content">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="card">
+                                <div class="card-header card-header-danger">
+                                    <h4 class="card-title">Edit Subject Activity</h4>
+                                    <!--<p class="card-category">Complete your profile</p>-->
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="updateSubjectActivityForm" (ngSubmit)="onSubmit()">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="Date" type="text"
+                                                           formControlName="datumAktivnosti">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="Max points" type="text"
+                                                           formControlName="maxBrojBodova">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3 typeHead">
+                                                <input type="text" list="saTypes" name="types" [(ngModel)]='selected'
+                                                       (change)="selectSubjectActivityType(selected)"
+                                                       formControlName="nastavnaAktivnostTipDto"/>
+                                                <datalist id="saTypes">
+                                                    <select>
+                                                        <option *ngFor="let sat of subjectActivityTypes"
+                                                                [value]="sat.naziv"></option>
+                                                    </select>
+                                                </datalist>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="Subject id"
+                                                           formControlName="predmetId">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                        <button mat-raised-button type="submit" class="btn btn-danger pull-left">Update
+                                            Subject
+                                        </button>
+
+                                        <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                                aria-label="Delete" (click)='deleteSubjectActivity()'>Delete Subject
+                                            Activity
+                                        </button>
+
+
+                                        <div class="clearfix"></div>
+
+                                        <button mat-raised-button type="button"
+                                                class="btn btn-danger pull-right close" aria-label="Close"
+                                                data-dismiss="modal" id='closeModal'>Close
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title mt-0 pull-left"> List of Subject Activities</h4>
+                        <button mat-raised-button type="button" class="btn btn-info pull-right"
+                                data-toggle="modal" data-target="#addModal">
+                            Add New
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Max points
+                                </th>
+                                <th>
+                                    Subject type
+                                </th>
+                                <th>
+                                    Subject id
+                                </th>
+                                <th>
+                                    Details
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let sa of subjectActivities;" (click)="Selected(sa);">
+                                    <td>
+                                        {{sa.id}}
+                                    </td>
+                                    <td>
+                                        {{sa.datumAktivnosti}}
+                                    </td>
+                                    <td>
+                                        {{sa.maxBrojBodova}}
+                                    </td>
+                                    <td>
+                                        {{sa.nastavnaAktivnostTipDto.naziv}}
+                                    </td>
+                                    <td>
+                                        {{sa.predmetId}}
+                                    </td>
+                                    <td>
+                                        <button mat-raised-button type="button" class="btn btn-danger"
+                                                data-toggle="modal" data-target="#satModal">
+                                            See More
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

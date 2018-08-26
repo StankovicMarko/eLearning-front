@@ -106,7 +106,8 @@
                                           Subject
                                       </button>
 
-                                      <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                      <button *ngIf="currentUserType == 'Administrator'" mat-raised-button type="button"
+                                              class="btn btn-warning pull-right"
                                               aria-label="Delete" (click)='deleteSubject()'>Delete Subject
                                       </button>
 
@@ -123,20 +124,23 @@
 
                           <div class="card">
                               <div class="card-header card-header-danger">
-                                  <h4 class="card-title">Edit Students on Subject</h4>
-                                  <button mat-raised-button type="button" class="btn btn-warning pull-right"
-                                          aria-label="Add"
-                                          (click)='addStudentToSubject()'>Add Student
-                                  </button>
-                                  <div class="typeHead pull-right">
-                                      <input type="text" list="students" name="student" [(ngModel)]='selectedStudentStr'
-                                             (change)="selectStudentToAddOnSubject(selectedStudentStr)"/>
-                                      <datalist id="students">
-                                          <select>
-                                              <option *ngFor="let student of students"
-                                                      [value]="student.indeks + ' ' + student.ime + ' ' + student.prezime"></option>
-                                          </select>
-                                      </datalist>
+                                  <h4 class="card-title">Students on Subject</h4>
+                                  <div *ngIf="currentUserType == 'Administrator'">
+                                      <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                              aria-label="Add"
+                                              (click)='addStudentToSubject()'>Add Student
+                                      </button>
+                                      <div class="typeHead pull-right">
+                                          <input type="text" list="students" name="student"
+                                                 [(ngModel)]='selectedStudentStr'
+                                                 (change)="selectStudentToAddOnSubject(selectedStudentStr)"/>
+                                          <datalist id="students">
+                                              <select>
+                                                  <option *ngFor="let student of students"
+                                                          [value]="student.indeks + ' ' + student.ime + ' ' + student.prezime"></option>
+                                              </select>
+                                          </datalist>
+                                      </div>
                                   </div>
                               </div>
                               <div class="card-body">
@@ -191,7 +195,8 @@
                                               {{student.pol}}
                                           </td>
                                           <td>
-                                              <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                                              <button *ngIf="currentUserType == 'Administrator'" mat-raised-button
+                                                      type="button" class="btn btn-warning pull-right"
                                                       aria-label="Delete"
                                                       (click)='deleteStudentFromSubject(student.id)'>Delete Student
                                               </button>
@@ -214,7 +219,8 @@
         <div class="card">
           <div class="card-header card-header-danger">
               <h4 class="card-title mt-0 pull-left"> List of Subjects</h4>
-              <button mat-raised-button type="button" class="btn btn-info pull-right"
+              <button *ngIf="currentUserType == 'Administrator'" mat-raised-button type="button"
+                      class="btn btn-info pull-right"
                       data-toggle="modal" data-target="#addModal">
                   Add New
               </button>
@@ -254,7 +260,8 @@
                         {{subject.nastavnikId}}
                     </td>
                     <td>
-                        <button mat-raised-button type="button" class="btn btn-danger"
+                        <button *ngIf="currentUserType != 'Ucenik'" mat-raised-button type="button"
+                                class="btn btn-danger"
                                 data-toggle="modal" data-target="#userModal">
                             See More
                         </button>

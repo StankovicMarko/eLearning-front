@@ -7,6 +7,7 @@ import {LoginComponent} from './login/login.component';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthGuard} from './guard/auth.guard';
 import {SubjectsComponent} from './components/subjects/subjects.component';
+import {SubjectActivitiesComponent} from './components/subject-activities/subject-activities.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
             {
                 path: 'subjects',
                 component: SubjectsComponent
+            },
+            {
+                path: 'subject-activities',
+                component: SubjectActivitiesComponent
             }]
     }
 
