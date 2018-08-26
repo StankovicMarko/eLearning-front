@@ -1,4 +1,4 @@
 export class SubjectActivityType {
-    id: number;
-    naziv: string;
+  id:number;
+  naziv:string;
 }

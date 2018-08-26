@@ -5,37 +5,61 @@ import {Subject} from '../model/subject';
 @Injectable()
 export class SubjectsService {
 
-    readonly rootUrl = 'http://localhost:8080/api/predmet';
+    readonly rootUrl = 'http://localhost:8080/api';
 
     constructor(private http: HttpClient) {
     }
 
     getSubjects() {
-        return this.http.get(this.rootUrl);
+        return this.http.get(this.rootUrl + '/predmet');
     }
 
     addSubject(subject: Subject) {
-        return this.http.post(this.rootUrl, subject);
+        return this.http.post(this.rootUrl + '/predmet', subject);
     }
 
     updateSubject(subject) {
-        return this.http.put(this.rootUrl + '/' + subject.id, subject);
+        return this.http.put(this.rootUrl + '/predmet/' + subject.id, subject);
     }
 
     deleteSubject(id) {
-        return this.http.delete(this.rootUrl + '/' + id);
+        return this.http.delete(this.rootUrl + '/predmet/' + id);
     }
 
     getStudentsOnSubject(id) {
-        return this.http.get(this.rootUrl + '/' + id + '/ucenici');
+        return this.http.get(this.rootUrl + '/predmet/' + id + '/ucenici');
     }
 
     addStudentToSubject(predmetId, ucenikId) {
         const data = {};
-        return this.http.put(this.rootUrl + '/' + predmetId + '/ucenik/' + ucenikId, data);
+        return this.http.put(this.rootUrl + '/predmet/' + predmetId + '/ucenik/' + ucenikId, data);
     }
 
     removeStudentFromSubject(predmetId, ucenikId) {
-        return this.http.delete(this.rootUrl + '/' + predmetId + '/ucenik/' + ucenikId);
+        return this.http.delete(this.rootUrl + '/predmet/' + predmetId + '/ucenik/' + ucenikId);
     }
+
+
+    ///subject activity types
+
+
+    getSubjectActivityTypes() {
+        return this.http.get(this.rootUrl+'/nastavna_aktivnost_tip');
+    }
+
+    addSubjectActivityType(type) {
+        return this.http.post(this.rootUrl+'/nastavna_aktivnost_tip', type);
+    }
+
+    updateSubjectActivityType(type) {
+        return this.http.put(this.rootUrl + '/nastavna_aktivnost_tip/' + type.id, type);
+    }
+
+    deleteType(type) {
+        return this.http.delete(this.rootUrl + '/nastavna_aktivnost_tip/' + type.id);
+    }
+
+
+
+
 }

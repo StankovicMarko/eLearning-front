@@ -15,6 +15,7 @@ import { UsersComponent } from '../../components/users/users.component';
 import { TeachersComponent } from '../../components/teachers/teachers.component';
 
 import { StudentsComponent } from '../../components/students/students.component';
+import { ActivityTypesComponent } from '../../components/activity-types/activity-types.component';
 
 
 
@@ -44,7 +45,8 @@ import {
     UpgradeComponent,
     UsersComponent,
     TeachersComponent,
-    StudentsComponent
+    StudentsComponent,
+    ActivityTypesComponent
   ]
 })
 
