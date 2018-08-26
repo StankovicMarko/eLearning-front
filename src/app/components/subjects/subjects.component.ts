@@ -4,6 +4,7 @@ import {Subject} from '../../model/subject';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Student} from '../../model/student';
 import {UsersService} from '../../services/users.service';
+import {AuthService} from '../../auth.service';
 
 @Component({
     selector: 'app-subjects',
@@ -18,6 +19,7 @@ export class SubjectsComponent implements OnInit {
     selectedSubject: Subject;
     selectedStudent: Student;
     selectedStudentStr: string;
+    currentUserType: string;
 
     addSubjectForm = new FormGroup({
         naziv: new FormControl('', Validators.required),
@@ -32,13 +34,14 @@ export class SubjectsComponent implements OnInit {
         nastavnikId: new FormControl(''),
     });
 
-    constructor(private subjectsService: SubjectsService, private usersService: UsersService) {
+    constructor(private subjectsService: SubjectsService, private usersService: UsersService, private authService: AuthService) {
     }
 
     ngOnInit() {
         this.subjectsService.getSubjects().subscribe((subjects: Subject[]) => {
             this.subjects = subjects;
         });
+        this.currentUserType = this.authService.getCurrentUserType();
     }
 
     getSubjects() {

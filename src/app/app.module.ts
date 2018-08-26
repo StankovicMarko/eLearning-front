@@ -23,6 +23,9 @@ import {SubjectsService} from './services/subjects.service';
 import {UsersService} from './services/users.service';
 import {MatInputModule} from '@angular/material';
 import {PaymentsService} from './services/payments.service';
+import {SubjectActivitiesService} from './services/subject-activities.service';
+import {SubjectActivitiesComponent} from './components/subject-activities/subject-activities.component';
+
 
 
 @NgModule({
@@ -44,14 +47,16 @@ import {PaymentsService} from './services/payments.service';
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
-    SubjectsComponent
-
+      SubjectsComponent,
+      SubjectActivitiesComponent
   ],
   providers: [AuthService,
     AuthGuard,
     UsersService,
     SubjectsService,
     PaymentsService,
+    SubjectActivitiesService
+
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
