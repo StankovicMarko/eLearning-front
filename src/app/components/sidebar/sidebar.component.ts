@@ -17,9 +17,10 @@ export const ADMIN_ROUTES: RouteInfo[] = [
     {path: '/teachers', title: 'Teachers', icon: 'assignment_ind', class: ''},
     {path: '/students', title: 'Students', icon: 'face', class: ''},
 
-
     {path: '/subjects', title: 'Subjects', icon: 'subject', class: ''},
     {path: '/subject-activities', title: 'Subject Activities', icon: 'assignment', class: ''},
+    {path: '/subject-activities-types', title: 'Subject Activities Types', icon: 'assignment_turned_in', class: ''},
+
     {path: '/payments', title: 'Payments', icon: 'payment', class: ''}
 ];
 
