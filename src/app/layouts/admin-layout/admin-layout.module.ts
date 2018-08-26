@@ -16,6 +16,7 @@ import { TeachersComponent } from '../../components/teachers/teachers.component'
 
 import { StudentsComponent } from '../../components/students/students.component';
 import { ActivityTypesComponent } from '../../components/activity-types/activity-types.component';
+import { PaymentsComponent } from '../../components/payments/payments.component';
 
 
 
@@ -34,7 +35,7 @@ import {
     MatButtonModule,
     MatRippleModule,
     MatInputModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   declarations: [
     DashboardComponent,
@@ -46,7 +47,8 @@ import {
     UsersComponent,
     TeachersComponent,
     StudentsComponent,
-    ActivityTypesComponent
+    ActivityTypesComponent,
+    PaymentsComponent
   ]
 })
 

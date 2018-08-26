@@ -32,7 +32,9 @@ export const NASTAVNIK_ROUTES: RouteInfo[] = [
 
 export const UCENIK_ROUTES: RouteInfo[] = [
     {path: '/subjects', title: 'Subjects', icon: 'subject', class: ''},
-    {path: '/documents', title: 'Documents', icon: 'picture_in_picture', class: ''},
+    {path: '/payments', title: 'Payments', icon: 'payment', class: ''},
+
+    {path: '/documents', title: 'Documents', icon: 'picture_in_picture', class: ''}
 ];
 
 @Component({

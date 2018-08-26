@@ -12,57 +12,18 @@ import { UsersComponent } from '../../components/users/users.component';
 import { TeachersComponent } from '../../components/teachers/teachers.component';
 import { StudentsComponent } from '../../components/students/students.component';
 import { ActivityTypesComponent } from '../../components/activity-types/activity-types.component';
+import { PaymentsComponent } from '../../components/payments/payments.component';
 
 
 
 export const AdminLayoutRoutes: Routes = [
-    // {
-    //   path: '',
-    //   children: [ {
-    //     path: 'dashboard',
-    //     component: DashboardComponent
-    // }]}, {
-    // path: '',
-    // children: [ {
-    //   path: 'userprofile',
-    //   component: UserProfileComponent
-    // }]
-    // }, {
-    //   path: '',
-    //   children: [ {
-    //     path: 'icons',
-    //     component: IconsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'notifications',
-    //         component: NotificationsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'maps',
-    //         component: MapsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'typography',
-    //         component: TypographyComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'upgrade',
-    //         component: UpgradeComponent
-    //     }]
-    // }
     { path: 'users',      component: UsersComponent },
     { path: 'teachers',      component: TeachersComponent },
     { path: 'students',      component: StudentsComponent },
 
     { path: 'subject-activities-types', component: ActivityTypesComponent },
+
+    { path: 'payments', component: PaymentsComponent },
 
 
     { path: 'dashboard',      component: DashboardComponent },

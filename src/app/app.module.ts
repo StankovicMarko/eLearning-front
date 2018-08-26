@@ -22,6 +22,7 @@ import {SubjectsService} from './services/subjects.service';
 
 import {UsersService} from './services/users.service';
 import {MatInputModule} from '@angular/material';
+import {PaymentsService} from './services/payments.service';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {MatInputModule} from '@angular/material';
     AuthGuard,
     UsersService,
     SubjectsService,
+    PaymentsService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
