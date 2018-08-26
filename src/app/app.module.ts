@@ -55,8 +55,7 @@ import {SubjectActivitiesComponent} from './components/subject-activities/subjec
     UsersService,
     SubjectsService,
     PaymentsService,
-    SubjectActivitiesService
-
+    SubjectActivitiesService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
