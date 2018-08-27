@@ -16,69 +16,65 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getAdmins() {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth': 'False' });
 
-    return this.http.get(this.rootUrl + '/users/admin', { headers: headers });
+    return this.http.get(this.rootUrl + '/users/admin');
   }
 
   getTeachers() {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth': 'False' });
 
-    return this.http.get(this.rootUrl + '/users/nastavnik', { headers: headers });
+    return this.http.get(this.rootUrl + '/users/nastavnik');
   }
 
   getStudents() {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth': 'False' });
 
-    return this.http.get(this.rootUrl + '/users/ucenik', { headers: headers });
+    return this.http.get(this.rootUrl + '/users/ucenik');
   }
 
 
   updateUser(user) {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth': 'False' });
 
     if (user instanceof Teacher) {
-      return this.http.put(this.rootUrl + '/users/nastavnik/' + user.id, user, { headers: headers });
+      return this.http.put(this.rootUrl + '/users/nastavnik/' + user.id, user);
 
     } else if (user instanceof Admin) {
 
-      return this.http.put(this.rootUrl + '/users/admin/' + user.id, user, { headers: headers });
+      return this.http.put(this.rootUrl + '/users/admin/' + user.id, user );
     }
     else if (user instanceof Student) {
 
-     return this.http.put(this.rootUrl + '/users/ucenik/' + user.id, user, { headers: headers });
+     return this.http.put(this.rootUrl + '/users/ucenik/' + user.id, user);
    }
   }
 
   deleteUser(user) {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth': 'False' });
+
 
     if (user instanceof Teacher) {
-      return this.http.delete(this.rootUrl + '/users/nastavnik/' + user.id, { headers: headers });
+      return this.http.delete(this.rootUrl + '/users/nastavnik/' + user.id);
     } else if (user instanceof Admin) {
 
-      return this.http.delete(this.rootUrl + '/users/admin/' + user.id, { headers: headers });
+      return this.http.delete(this.rootUrl + '/users/admin/' + user.id);
     }else if (user instanceof Student) {
 
-     return this.http.delete(this.rootUrl + '/users/ucenik/' + user.id, { headers: headers });
+     return this.http.delete(this.rootUrl + '/users/ucenik/' + user.id);
    }
   }
 
   addUser(user) {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth': 'False' });
+
 
 
     if (user instanceof Teacher) {
-      return this.http.post(this.rootUrl + '/users/nastavnik/', user, { headers: headers });
+      return this.http.post(this.rootUrl + '/users/nastavnik/', user);
 
     } else if (user instanceof Admin) {
 
-      return this.http.post(this.rootUrl + '/users/admin/', user, { headers: headers });
+      return this.http.post(this.rootUrl + '/users/admin/', user);
 
 
     }else if (user instanceof Student) {
 
-     return this.http.post(this.rootUrl + '/users/ucenik/', user, { headers: headers });
+     return this.http.post(this.rootUrl + '/users/ucenik/', user);
    }
 
   }
