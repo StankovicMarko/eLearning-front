@@ -12,6 +12,7 @@ import { TeachersComponent } from '../../components/teachers/teachers.component'
 import { StudentsComponent } from '../../components/students/students.component';
 import { ActivityTypesComponent } from '../../components/activity-types/activity-types.component';
 import { PaymentsComponent } from '../../components/payments/payments.component';
+import { DocumentsComponent } from '../../components/documents/documents.component';
 
 
 
@@ -38,7 +39,8 @@ import {
     TeachersComponent,
     StudentsComponent,
     ActivityTypesComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    DocumentsComponent
   ]
 })
 

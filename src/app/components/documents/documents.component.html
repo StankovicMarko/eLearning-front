@@ -1,0 +1,110 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+
+    <div class="modal fade" id="addModal" tabindex="-1" *ngIf="currentUserType == 'Ucenik'"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content main-content">
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Add Document</h4>
+                  <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <label for="file">Choose File</label>
+                    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+
+                    <button mat-raised-button type="submit" class="btn btn-danger pull-left"
+                      (click)="addDocument();">Create Document</button>
+
+                    <button mat-raised-button type="button"
+                    class="btn btn-danger pull-right close" aria-label="Close"
+                    data-dismiss="modal" id='closeModalAdd'>Close</button>
+
+
+                    <div class="clearfix"></div>
+
+
+                  </form>
+
+
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="row" *ngIf="documents">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0 pull-left"> List of documents</h4>
+            <button *ngIf="currentUserType == 'Ucenik'" mat-raised-button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addModal">
+                        Add New
+                      </button>
+
+
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Uploaded
+                  </th>
+                  <th>
+                    Download
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let d of documents; let i=index;" (click)="Selected(d);">
+                    <td>
+                      {{d.id}}
+                    </td>
+                    <td>
+                      {{d.imeFajla}}
+                    </td>
+                    <td>
+                      {{d.uploadDatum}}
+                    </td>
+                    <td *ngIf="currentUserType == 'Ucenik'">
+
+                      <button mat-raised-button type="button" class="btn btn-danger" (click)="downloadDocument(d);">
+                                Download
+                                </button>
+                    </td>
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

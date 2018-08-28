@@ -26,6 +26,7 @@ import {PaymentsService} from './services/payments.service';
 import {SubjectActivitiesService} from './services/subject-activities.service';
 import {SubjectActivitiesComponent} from './components/subject-activities/subject-activities.component';
 
+import {DocumentsService} from './services/documents.service';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import {SubjectActivitiesComponent} from './components/subject-activities/subjec
     SubjectsService,
     PaymentsService,
     SubjectActivitiesService,
+    DocumentsService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,

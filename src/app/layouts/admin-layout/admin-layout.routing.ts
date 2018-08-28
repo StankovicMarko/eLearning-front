@@ -9,6 +9,7 @@ import { StudentsComponent } from '../../components/students/students.component'
 import { ActivityTypesComponent } from '../../components/activity-types/activity-types.component';
 import { PaymentsComponent } from '../../components/payments/payments.component';
 
+import { DocumentsComponent } from '../../components/documents/documents.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -19,6 +20,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'subject-activities-types', component: ActivityTypesComponent },
 
     { path: 'payments', component: PaymentsComponent },
+
+    { path: 'documents', component: DocumentsComponent },
 
 
     { path: 'dashboard',      component: DashboardComponent },
