@@ -22,7 +22,7 @@ export class SubjectActivitiesComponent implements OnInit {
         datumAktivnosti: new FormControl('', Validators.required),
         maxBrojBodova: new FormControl('', Validators.required),
         nastavnaAktivnostTipDto: new FormControl('', Validators.required),
-        predmetId: new FormControl('', Validators.required),
+        predmet: new FormControl('', Validators.required),
     });
 
     updateSubjectActivityForm = new FormGroup({
@@ -30,7 +30,7 @@ export class SubjectActivitiesComponent implements OnInit {
         datumAktivnosti: new FormControl(''),
         maxBrojBodova: new FormControl(''),
         nastavnaAktivnostTipDto: new FormControl(''),
-        predmetId: new FormControl(''),
+        predmet: new FormControl(''),
     });
 
     constructor(private saService: SubjectActivitiesService, private subjectService: SubjectsService) {
@@ -79,7 +79,7 @@ export class SubjectActivitiesComponent implements OnInit {
             datumAktivnosti: subjectActivity.datumAktivnosti,
             maxBrojBodova: subjectActivity.maxBrojBodova,
             nastavnaAktivnostTipDto: subjectActivity.nastavnaAktivnostTipDto.naziv,
-            predmetId: subjectActivity.predmetId,
+            predmet: subjectActivity.predmet,
         });
         this.getAllSubjectActivities();
         this.selected = subjectActivity.nastavnaAktivnostTipDto.naziv;

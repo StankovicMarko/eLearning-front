@@ -43,7 +43,7 @@
                                             <div class="col-md-3">
                                                 <mat-form-field class="example-full-width">
                                                     <input matInput placeholder="Subject id"
-                                                           formControlName="predmetId">
+                                                           formControlName="predmet">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                                             <div class="col-md-3">
                                                 <mat-form-field class="example-full-width">
                                                     <input matInput placeholder="Subject id"
-                                                           formControlName="predmetId">
+                                                           formControlName="predmet">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -173,7 +173,7 @@
                                     Subject type
                                 </th>
                                 <th>
-                                    Subject id
+                                    Subject
                                 </th>
                                 <th>
                                     Details
@@ -194,7 +194,7 @@
                                         {{sa.nastavnaAktivnostTipDto.naziv}}
                                     </td>
                                     <td>
-                                        {{sa.predmetId}}
+                                        {{sa.predmet.naziv}}
                                     </td>
                                     <td>
                                         <button mat-raised-button type="button" class="btn btn-danger"
