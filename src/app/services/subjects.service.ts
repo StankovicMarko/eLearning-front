@@ -15,11 +15,21 @@ export class SubjectsService {
     }
 
     addSubject(subject: Subject) {
-        return this.http.post(this.rootUrl + '/predmet', subject);
+        const data = {
+            'naziv': subject.naziv,
+            'bodoviESPB': subject.bodoviESPB,
+            'nastavnikId': subject.nastavnik.id
+        };
+        return this.http.post(this.rootUrl + '/predmet', data);
     }
 
     updateSubject(subject) {
-        return this.http.put(this.rootUrl + '/predmet/' + subject.id, subject);
+        const data = {
+            'naziv': subject.naziv,
+            'bodoviESPB': subject.bodoviESPB,
+            'nastavnikId': subject.nastavnik.id
+        };
+        return this.http.put(this.rootUrl + '/predmet/' + subject.id, data);
     }
 
     deleteSubject(id) {
