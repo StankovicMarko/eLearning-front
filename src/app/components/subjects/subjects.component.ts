@@ -62,7 +62,9 @@ export class SubjectsComponent implements OnInit {
             bodoviESPB: subject.bodoviESPB,
             nastavnikId: subject.nastavnikId
         });
-        if(this.currentUserType=='Administrator'){this.getAllStudent();}
+        if (this.currentUserType === 'Administrator') {
+            this.getAllStudent();
+        }
         this.getStudentsOnSubject();
     }
 

@@ -242,7 +242,7 @@
                   ESPB
                 </th>
                 <th>
-                    Teacher Id
+                    Teacher
                 </th>
                 <th *ngIf="currentUserType != 'Ucenik'">
                     Details
@@ -260,7 +260,7 @@
                       {{subject.bodoviESPB}}
                   </td>
                     <td>
-                        {{subject.nastavnikId}}
+                        {{subject.nastavnik.ime + ' ' + subject.nastavnik.prezime}}
                     </td>
                     <td>
                         <button *ngIf="currentUserType != 'Ucenik'" mat-raised-button type="button"
