@@ -21,7 +21,7 @@ export class SubjectActivitiesService {
             datumAktivnosti: subjectActivity.datumAktivnosti,
             maxBrojBodova: subjectActivity.maxBrojBodova,
             nastavnaAktivnostTipId: subjectActivity.nastavnaAktivnostTipDto.id,
-            predmetId: subjectActivity.predmetId
+            predmetId: subjectActivity.predmet.id
         };
         return this.http.post(this.rootUrl, data);
     }
@@ -31,7 +31,7 @@ export class SubjectActivitiesService {
             datumAktivnosti: subjectActivity.datumAktivnosti,
             maxBrojBodova: subjectActivity.maxBrojBodova,
             nastavnaAktivnostTipId: subjectActivity.nastavnaAktivnostTipDto.id,
-            predmetId: subjectActivity.predmetId
+            predmetId: subjectActivity.predmet.id
         };
         return this.http.put(this.rootUrl + '/' + subjectActivity.id, data);
     }

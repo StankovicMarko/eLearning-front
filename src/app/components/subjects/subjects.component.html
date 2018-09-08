@@ -31,11 +31,17 @@
                                                          formControlName="bodoviESPB">
                                               </mat-form-field>
                                           </div>
-                                          <div class="col-md-3">
-                                              <mat-form-field class="example-full-width">
-                                                  <input matInput placeholder="nastavnik Id"
-                                                         formControlName="nastavnikId">
-                                              </mat-form-field>
+                                          <div class="col-md-3 typeHead">
+                                              <input type="text" list="teachersAdd" name="types"
+                                                     [(ngModel)]='selected'
+                                                     (change)="selectTeacher(selected)"
+                                                     formControlName="nastavnik"/>
+                                              <datalist id="teachersAdd">
+                                                  <select>
+                                                      <option *ngFor="let teacher of teachers"
+                                                              [value]="teacher.ime + ' ' + teacher.prezime"></option>
+                                                  </select>
+                                              </datalist>
                                           </div>
                                       </div>
                                       <button mat-raised-button type="submit" class="btn btn-danger pull-left"
@@ -94,11 +100,17 @@
                                                          formControlName="bodoviESPB">
                                               </mat-form-field>
                                           </div>
-                                          <div class="col-md-3">
-                                              <mat-form-field class="example-full-width">
-                                                  <input matInput placeholder="nastavnik Id"
-                                                         formControlName="nastavnikId">
-                                              </mat-form-field>
+                                          <div class="col-md-3 typeHead">
+                                              <input type="text" list="teachers" name="types"
+                                                     [(ngModel)]='selected'
+                                                     (change)="selectTeacher(selected)"
+                                                     formControlName="nastavnik"/>
+                                              <datalist id="teachers">
+                                                  <select>
+                                                      <option *ngFor="let teacher of teachers"
+                                                              [value]="teacher.ime + ' ' + teacher.prezime"></option>
+                                                  </select>
+                                              </datalist>
                                           </div>
                                       </div>
 
@@ -242,7 +254,7 @@
                   ESPB
                 </th>
                 <th>
-                    Teacher Id
+                    Teacher
                 </th>
                 <th *ngIf="currentUserType != 'Ucenik'">
                     Details
@@ -260,7 +272,7 @@
                       {{subject.bodoviESPB}}
                   </td>
                     <td>
-                        {{subject.nastavnikId}}
+                        {{subject.nastavnik.ime + ' ' + subject.nastavnik.prezime}}
                     </td>
                     <td>
                         <button *ngIf="currentUserType != 'Ucenik'" mat-raised-button type="button"

@@ -4,6 +4,7 @@ import {SubjectActivity} from '../../model/subject-activity';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SubjectActivityType} from '../../model/subject-activity-type';
 import {SubjectsService} from '../../services/subjects.service';
+import {Subject} from '../../model/subject';
 
 @Component({
     selector: 'app-subject-activities',
@@ -16,13 +17,16 @@ export class SubjectActivitiesComponent implements OnInit {
     subjectActivityTypes: SubjectActivityType[];
     selectedSubjectActivity: SubjectActivity;
     selectedSubjectActivityType: SubjectActivityType;
+    subjects: Subject[];
+    selectedSubject: Subject;
     selected;
+    selectedSub;
 
     addSubjectActivityForm = new FormGroup({
         datumAktivnosti: new FormControl('', Validators.required),
         maxBrojBodova: new FormControl('', Validators.required),
         nastavnaAktivnostTipDto: new FormControl('', Validators.required),
-        predmetId: new FormControl('', Validators.required),
+        predmet: new FormControl('', Validators.required),
     });
 
     updateSubjectActivityForm = new FormGroup({
@@ -30,13 +34,14 @@ export class SubjectActivitiesComponent implements OnInit {
         datumAktivnosti: new FormControl(''),
         maxBrojBodova: new FormControl(''),
         nastavnaAktivnostTipDto: new FormControl(''),
-        predmetId: new FormControl(''),
+        predmet: new FormControl(''),
     });
 
     constructor(private saService: SubjectActivitiesService, private subjectService: SubjectsService) {
     }
 
     ngOnInit() {
+        this.getAllSubjects();
         this.getAllSubjectActivities();
         this.getAllSubjectActivityType();
     }
@@ -53,9 +58,16 @@ export class SubjectActivitiesComponent implements OnInit {
         });
     }
 
+    getAllSubjects() {
+        this.subjectService.getSubjects().subscribe((data: Subject[]) => {
+            this.subjects = data;
+        });
+    }
+
     addSubjectActivity() {
         const subjectActivity = Object.assign({}, this.addSubjectActivityForm.value);
         subjectActivity.nastavnaAktivnostTipDto = this.selectedSubjectActivityType;
+        subjectActivity.predmet = this.selectedSubject;
         this.saService.addSubjectActivity(subjectActivity).subscribe((data: SubjectActivity) => {
                 this.getAllSubjectActivities();
             },
@@ -79,16 +91,19 @@ export class SubjectActivitiesComponent implements OnInit {
             datumAktivnosti: subjectActivity.datumAktivnosti,
             maxBrojBodova: subjectActivity.maxBrojBodova,
             nastavnaAktivnostTipDto: subjectActivity.nastavnaAktivnostTipDto.naziv,
-            predmetId: subjectActivity.predmetId,
+            predmet: subjectActivity.predmet.naziv,
         });
         this.getAllSubjectActivities();
         this.selected = subjectActivity.nastavnaAktivnostTipDto.naziv;
+        this.selectedSub = subjectActivity.predmet.naziv;
     }
 
     onSubmit() {
         const subjectActivity = Object.assign({}, this.updateSubjectActivityForm.value);
         this.selectSubjectActivityType(subjectActivity.nastavnaAktivnostTipDto);
         subjectActivity.nastavnaAktivnostTipDto = this.selectedSubjectActivityType;
+        this.selectSubject(subjectActivity.predmet);
+        subjectActivity.predmet = this.selectedSubject;
         this.saService.updateSubjectActivity(subjectActivity).subscribe((data: SubjectActivity) => {
                 this.getAllSubjectActivities();
             },
@@ -100,6 +115,10 @@ export class SubjectActivitiesComponent implements OnInit {
 
     selectSubjectActivityType(name: string) {
         this.selectedSubjectActivityType = this.subjectActivityTypes.find(sat => sat.naziv === name);
+    }
+
+    selectSubject(name: string) {
+        this.selectedSubject = this.subjects.find(subject => subject.naziv === name);
     }
 
 }

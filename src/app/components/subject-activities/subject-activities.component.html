@@ -40,11 +40,17 @@
                                                     </select>
                                                 </datalist>
                                             </div>
-                                            <div class="col-md-3">
-                                                <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="Subject id"
-                                                           formControlName="predmetId">
-                                                </mat-form-field>
+                                            <div class="col-md-3 typeHead">
+                                                <input type="text" list="subjectsAdd" name="types"
+                                                       [(ngModel)]='selectedSub'
+                                                       (change)="selectSubject(selectedSub)"
+                                                       formControlName="predmet"/>
+                                                <datalist id="subjectsAdd">
+                                                    <select>
+                                                        <option *ngFor="let subject of subjects"
+                                                                [value]="subject.naziv"></option>
+                                                    </select>
+                                                </datalist>
                                             </div>
                                         </div>
                                         <button mat-raised-button type="submit" class="btn btn-danger pull-left"
@@ -112,11 +118,17 @@
                                                     </select>
                                                 </datalist>
                                             </div>
-                                            <div class="col-md-3">
-                                                <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="Subject id"
-                                                           formControlName="predmetId">
-                                                </mat-form-field>
+                                            <div class="col-md-3 typeHead">
+                                                <input type="text" list="subjects" name="types"
+                                                       [(ngModel)]='selectedSub'
+                                                       (change)="selectSubject(selectedSub)"
+                                                       formControlName="predmet"/>
+                                                <datalist id="subjects">
+                                                    <select>
+                                                        <option *ngFor="let subject of subjects"
+                                                                [value]="subject.naziv"></option>
+                                                    </select>
+                                                </datalist>
                                             </div>
                                         </div>
 
@@ -173,7 +185,7 @@
                                     Subject type
                                 </th>
                                 <th>
-                                    Subject id
+                                    Subject
                                 </th>
                                 <th>
                                     Details
@@ -194,7 +206,7 @@
                                         {{sa.nastavnaAktivnostTipDto.naziv}}
                                     </td>
                                     <td>
-                                        {{sa.predmetId}}
+                                        {{sa.predmet.naziv}}
                                     </td>
                                     <td>
                                         <button mat-raised-button type="button" class="btn btn-danger"
