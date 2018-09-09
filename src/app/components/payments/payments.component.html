@@ -38,7 +38,10 @@
                         </div>
                         <div class="col-md-2">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Student" type="text" formControlName="ucenikId">
+                            <input matInput placeholder="Student" type="text" formControlName="ucenikId" list='ucenici'>
+                            <datalist id="ucenici">
+                              <option *ngFor="let s of students" value="{{s.id}}">{{s.indeks}} - {{ s.prezime}}, {{s.ime}}</option>
+                            </datalist>
                           </mat-form-field>
                         </div>
                       </div>
@@ -120,7 +123,10 @@
                         </div>
                         <div class="col-md-2">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Student" type="text" formControlName="ucenikId">
+                            <input matInput placeholder="Student" type="text" formControlName="ucenikId" list='ucenici'>
+                            <datalist id="ucenici">
+                                <option *ngFor="let s of students" value="{{s.id}}">{{s.indeks}} - {{ s.prezime}}, {{s.ime}}</option>
+                            </datalist>
                           </mat-form-field>
                         </div>
                       </div>

@@ -2,94 +2,97 @@
   <div class="container-fluid">
 
     <!-- Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1"
-    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
 
-          <div class="modal-content main-content">
-            <div class="container-fluid">
-              <div class="row">
+        <div class="modal-content main-content">
+          <div class="container-fluid">
+            <div class="row">
 
-                <div class="card">
-                  <div class="card-header card-header-danger">
-                    <h4 class="card-title">Add Profile</h4>
-                    <p class="card-category">Complete your profile</p>
-                  </div>
-                  <div class="card-body">
-                    <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Username" type="text" formControlName="username">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-3">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Password" type="text" formControlName="password">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-3">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Name" formControlName="ime">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-3">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Surname" formControlName="prezime" >
-                          </mat-form-field>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Address" type="text" formControlName="adresa" >
-                          </mat-form-field>
-                        </div>
-
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Residence ID" type="text" formControlName="mestoId">
-                          </mat-form-field>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Phone" type="text" formControlName="telefon">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Date of Birth" type="text" formControlName="datumRodjenja">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Gender" type="text" formControlName="pol">
-                          </mat-form-field>
-                        </div>
-                      </div>
-
-
-                      <button mat-raised-button type="submit" class="btn btn-danger pull-left"
-                      [disabled]="!addUserForm.valid">Create Profile</button>
-
-                      <button mat-raised-button type="button"
-                      class="btn btn-danger pull-right close" aria-label="Close"
-                      data-dismiss="modal" id='closeModalAdd'>Close</button>
-
-
-                      <div class="clearfix"></div>
-
-
-                    </form>
-                  </div>
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Add Profile</h4>
+                  <p class="card-category">Complete your profile</p>
                 </div>
+                <div class="card-body">
+                  <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Username" type="text" formControlName="username">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Password" type="text" formControlName="password">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Name" formControlName="ime">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Surname" formControlName="prezime">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Address" type="text" formControlName="adresa">
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Residence ID" type="text" formControlName="mestoId" list='mesta'>
+                          <datalist id="mesta">
+                             <option value="1">Srbija, Novi Sad</option>a
+                          </datalist>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Phone" type="text" formControlName="telefon">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Date of Birth" type="text" formControlName="datumRodjenja">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Gender" type="text" formControlName="pol" list='pol'>
+                          <datalist id="pol">
+                              <option value="M">
+                              <option value="Z">
+                          </datalist>
+                        </mat-form-field>
+                      </div>
+                    </div>
 
 
+                    <button mat-raised-button type="submit" class="btn btn-danger pull-left" [disabled]="!addUserForm.valid">Create Profile</button>
+
+                    <button mat-raised-button type="button" class="btn btn-danger pull-right close" aria-label="Close" data-dismiss="modal" id='closeModalAdd'>Close</button>
+
+
+                    <div class="clearfix"></div>
+
+
+                  </form>
+                </div>
               </div>
+
+
             </div>
           </div>
+        </div>
 
 
       </div>
@@ -101,91 +104,96 @@
     <div *ngIf="selectedUser" class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
 
-          <div class="modal-content main-content">
-            <div class="container-fluid">
-              <div class="row">
+        <div class="modal-content main-content">
+          <div class="container-fluid">
+            <div class="row">
 
-                <div class="card">
-                  <div class="card-header card-header-danger">
-                    <h4 class="card-title">Edit Profile</h4>
-                    <p class="card-category">Complete your profile</p>
-                  </div>
-                  <div class="card-body">
-                    <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
-                      <div class="row">
-                        <!-- <div class="col-md-1">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Edit Profile</h4>
+                  <p class="card-category">Complete your profile</p>
+                </div>
+                <div class="card-body">
+                  <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                      <!-- <div class="col-md-1">
                           <mat-form-field class="example-full-width">
                             <input matInput placeholder="ID" formControlName="id">
                           </mat-form-field>
                         </div> -->
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Username" type="text" formControlName="username">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Name" formControlName="ime">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Surname" formControlName="prezime" >
-                          </mat-form-field>
-                        </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Username" type="text" formControlName="username">
+                        </mat-form-field>
                       </div>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Address" type="text" formControlName="adresa" >
-                          </mat-form-field>
-                        </div>
-
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Residence ID" type="text" formControlName="mestoId">
-                          </mat-form-field>
-                        </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Name" formControlName="ime">
+                        </mat-form-field>
                       </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Phone" type="text" formControlName="telefon">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Date of Birth" type="text" formControlName="datumRodjenja">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Gender" type="text" formControlName="pol">
-                          </mat-form-field>
-                        </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Surname" formControlName="prezime">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Address" type="text" formControlName="adresa">
+                        </mat-form-field>
                       </div>
 
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Residence ID" type="text" formControlName="mestoId"list='mesta'>
+                          <datalist id="mesta">
+                             <option value="1">Srbija, Novi Sad</option>a
+                          </datalist>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Phone" type="text" formControlName="telefon">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Date of Birth" type="text" formControlName="datumRodjenja">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Gender" type="text" formControlName="pol" list='pol'>
+                          <datalist id="pol">
+                              <option value="M">
+                              <option value="Z">
+                          </datalist>
+                        </mat-form-field>
+                      </div>
+                    </div>
 
-                      <button mat-raised-button type="submit" class="btn btn-danger pull-left">Update Profile</button>
 
-                      <button mat-raised-button type="button" class="btn btn-warning pull-right" aria-label="Delete" (click)='deleteUser()'>Delete profile</button>
+                    <button mat-raised-button type="submit" class="btn btn-danger pull-left">Update Profile</button>
+
+                    <button mat-raised-button type="button" class="btn btn-warning pull-right" aria-label="Delete" (click)='deleteUser()'>Delete profile</button>
 
 
 
-                      <div class="clearfix"></div>
+                    <div class="clearfix"></div>
 
-                      <button mat-raised-button type="button"
-                      class="btn btn-danger pull-right close" aria-label="Close"
-                      data-dismiss="modal" id='closeModal'>Close</button>
+                    <button mat-raised-button type="button" class="btn btn-danger pull-right close" aria-label="Close" data-dismiss="modal" id='closeModal'>Close</button>
 
-                    </form>
-                  </div>
+                  </form>
                 </div>
-
-
               </div>
+
+
             </div>
           </div>
+        </div>
 
 
       </div>
@@ -197,8 +205,7 @@
         <div class="card card-plain">
           <div class="card-header card-header-danger">
             <h4 class="card-title mt-0 pull-left"> List of Admins</h4>
-            <button mat-raised-button type="button" class="btn btn-info pull-right"
-            data-toggle="modal" data-target="#addModal">
+            <button mat-raised-button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addModal">
                         Add New
                       </button>
 
@@ -259,8 +266,7 @@
 
                     <td>
 
-                      <button mat-raised-button type="button" class="btn btn-danger"
-                      data-toggle="modal" data-target="#userModal">
+                      <button mat-raised-button type="button" class="btn btn-danger" data-toggle="modal" data-target="#userModal">
                                   See More
                                 </button>
                     </td>
