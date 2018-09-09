@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { PaymentsService } from '../../services/payments.service';
 import {AuthService} from '../../auth.service';
+import {UsersService} from '../../services/users.service';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,6 +17,8 @@ export class PaymentsComponent implements OnInit {
 
 
   public payments;
+  public students;
+
   public selectedPayment;
   currentUserType: string;
 
@@ -41,14 +44,26 @@ export class PaymentsComponent implements OnInit {
     ucenikId: new FormControl('', Validators.required)
   });
 
-  constructor(private paymentsService: PaymentsService,  private authService: AuthService) { }
+  constructor(private paymentsService: PaymentsService,
+    private authService: AuthService,
+    private usersService: UsersService) { }
 
   ngOnInit() {
 
 
     this.getPayments();
+    this.getStudents();
+
     this.currentUserType = this.authService.getCurrentUserType();
 
+  }
+
+  getStudents() {
+    this.usersService.getStudents().subscribe(
+      data => { this.students = data },
+      err => console.error(err),
+      () => console.log('done loading students')
+    );
   }
 
   getPayments() {
