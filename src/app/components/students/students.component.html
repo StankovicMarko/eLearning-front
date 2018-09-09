@@ -90,7 +90,11 @@
                       <div class="row">
                         <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Employed" type="text" formControlName="radniStatus">
+                            <input matInput placeholder="Employed" type="text" formControlName="radniStatus" list='radniStatus'>
+                            <datalist id="radniStatus">
+                                <option value="ZAPOSLEN">
+                                <option value="NEZAPOSLEN">
+                            </datalist>
                           </mat-form-field>
                         </div>
                         <div class="col-md-6">
@@ -215,7 +219,11 @@
                       <div class="row">
                         <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Employed" type="text" formControlName="radniStatus">
+                            <input matInput placeholder="Employed" type="text" formControlName="radniStatus" list='radniStatus'>
+                            <datalist id="radniStatus">
+                                <option value="ZAPOSLEN">
+                                <option value="NEZAPOSLEN">
+                            </datalist>
                           </mat-form-field>
                         </div>
                         <div class="col-md-6">
